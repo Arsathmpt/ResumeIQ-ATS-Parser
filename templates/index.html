@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ResumeIQ — ATS Parsing Engine</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #060910;
+  --surface: #0e1420;
+  --surface2: #151d2e;
+  --border: rgba(82,196,255,0.1);
+  --accent: #52c4ff;
+  --accent2: #a78bfa;
+  --accent3: #34d399;
+  --accent4: #fbbf24;
+  --danger: #f87171;
+  --text: #e2e8f0;
+  --muted: #64748b;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;min-height:100vh;overflow-x:hidden}
+
+/* BG FX */
+.bg-fx{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+.bg-fx::before{content:'';position:absolute;width:700px;height:700px;border-radius:50%;background:radial-gradient(circle,rgba(82,196,255,0.07) 0%,transparent 70%);top:-200px;left:-200px;animation:drift1 12s ease-in-out infinite}
+.bg-fx::after{content:'';position:absolute;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(167,139,250,0.07) 0%,transparent 70%);bottom:-100px;right:-100px;animation:drift2 10s ease-in-out infinite}
+@keyframes drift1{0%,100%{transform:translate(0,0)}50%{transform:translate(60px,40px)}}
+@keyframes drift2{0%,100%{transform:translate(0,0)}50%{transform:translate(-40px,-60px)}}
+.grid{position:fixed;inset:0;z-index:0;pointer-events:none;background-image:linear-gradient(rgba(82,196,255,0.025) 1px,transparent 1px),linear-gradient(90deg,rgba(82,196,255,0.025) 1px,transparent 1px);background-size:50px 50px}
+
+.wrap{max-width:1000px;margin:0 auto;padding:0 20px;position:relative;z-index:1}
+
+/* HEADER */
+header{padding:22px 0;border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100;backdrop-filter:blur(24px);background:rgba(6,9,16,0.85)}
+.hdr{display:flex;align-items:center;justify-content:space-between}
+.logo{font-family:'Syne',sans-serif;font-weight:800;font-size:1.4rem;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hbadge{background:rgba(52,211,153,0.1);border:1px solid rgba(52,211,153,0.25);color:var(--accent3);padding:4px 14px;border-radius:20px;font-size:0.75rem;font-weight:600;letter-spacing:.5px}
+
+/* HERO */
+.hero{padding:70px 0 50px;text-align:center}
+.htag{display:inline-flex;align-items:center;gap:6px;background:rgba(167,139,250,0.08);border:1px solid rgba(167,139,250,0.2);color:var(--accent2);padding:5px 14px;border-radius:20px;font-size:0.78rem;font-weight:500;margin-bottom:24px;animation:fadeUp .6s ease both}
+h1{font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(2.2rem,5.5vw,4rem);line-height:1.08;letter-spacing:-1.5px;animation:fadeUp .7s .1s ease both}
+.grad{background:linear-gradient(135deg,var(--accent),var(--accent2),var(--accent3));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hsub{color:var(--muted);font-size:1rem;max-width:480px;margin:16px auto 0;line-height:1.7;animation:fadeUp .7s .2s ease both}
+.hstats{display:flex;gap:24px;justify-content:center;margin-top:28px;flex-wrap:wrap;animation:fadeUp .7s .3s ease both}
+.hstat{text-align:center}
+.hstat-num{font-family:'Syne',sans-serif;font-weight:800;font-size:1.4rem;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hstat-lbl{font-size:0.72rem;color:var(--muted);margin-top:2px}
+
+/* UPLOAD */
+.upload-wrap{margin:30px 0;animation:fadeUp .7s .4s ease both}
+.dropzone{border:2px dashed rgba(82,196,255,0.2);border-radius:22px;padding:55px 30px;text-align:center;cursor:pointer;transition:all .3s;background:rgba(14,20,32,0.7);backdrop-filter:blur(10px);position:relative;overflow:hidden}
+.dropzone::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 50%,rgba(82,196,255,0.04),transparent 70%);opacity:0;transition:opacity .3s}
+.dropzone:hover,.dropzone.over{border-color:var(--accent);box-shadow:0 0 50px rgba(82,196,255,0.08);transform:translateY(-3px)}
+.dropzone:hover::after,.dropzone.over::after{opacity:1}
+.dicon{width:68px;height:68px;background:linear-gradient(135deg,rgba(82,196,255,0.12),rgba(167,139,250,0.12));border-radius:18px;display:flex;align-items:center;justify-content:center;font-size:1.8rem;margin:0 auto 18px;animation:iconPulse 3s ease-in-out infinite}
+@keyframes iconPulse{0%,100%{box-shadow:0 0 0 0 rgba(82,196,255,.25)}50%{box-shadow:0 0 0 14px rgba(82,196,255,0)}}
+.dtitle{font-family:'Syne',sans-serif;font-weight:700;font-size:1.15rem;margin-bottom:6px}
+.dsub{color:var(--muted);font-size:0.85rem}
+.ftypes{display:flex;gap:8px;justify-content:center;margin-top:16px;flex-wrap:wrap}
+.ftype{background:rgba(255,255,255,0.03);border:1px solid var(--border);padding:3px 12px;border-radius:6px;font-size:0.72rem;color:var(--muted);font-weight:600;letter-spacing:.5px}
+#fi{display:none}
+.finfo{display:none;margin-top:14px;align-items:center;justify-content:center;gap:10px;background:rgba(52,211,153,0.07);border:1px solid rgba(52,211,153,0.18);border-radius:10px;padding:10px 18px}
+.finfo.show{display:flex}
+.fname{color:var(--accent3);font-weight:500;font-size:0.88rem}
+.abtn{display:block;width:100%;margin-top:16px;padding:17px;background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;border:none;border-radius:14px;font-family:'Syne',sans-serif;font-weight:700;font-size:1rem;cursor:pointer;transition:all .3s;letter-spacing:.3px;position:relative;overflow:hidden}
+.abtn::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(255,255,255,.15),transparent);opacity:0;transition:opacity .3s}
+.abtn:hover::before{opacity:1}
+.abtn:hover{transform:translateY(-2px);box-shadow:0 14px 40px rgba(82,196,255,.25)}
+.abtn:disabled{opacity:.4;cursor:not-allowed;transform:none}
+.errbx{display:none;background:rgba(248,113,113,0.07);border:1px solid rgba(248,113,113,0.2);border-radius:10px;padding:12px 16px;color:var(--danger);margin-top:12px;font-size:0.85rem}
+.errbx.show{display:block;animation:shake .4s}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-8px)}75%{transform:translateX(8px)}}
+
+/* LOADING */
+.loader{display:none;text-align:center;padding:60px 20px}
+.loader.show{display:block}
+.lring{width:64px;height:64px;margin:0 auto 20px;border:3px solid rgba(82,196,255,.1);border-top-color:var(--accent);border-radius:50%;animation:spin .8s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.ltxt{font-family:'Syne',sans-serif;font-size:1rem;color:var(--accent);margin-bottom:6px}
+.lstep{font-size:0.82rem;color:var(--muted);animation:fadeIn .4s}
+
+/* RESULTS */
+#res{display:none}
+#res.show{display:block;animation:fadeUp .6s ease}
+
+.sechead{display:flex;align-items:center;gap:12px;margin:44px 0 20px}
+.sectitle{font-family:'Syne',sans-serif;font-weight:700;font-size:1.35rem}
+.secline{flex:1;height:1px;background:var(--border)}
+
+/* CANDIDATE */
+.ccard{background:linear-gradient(135deg,rgba(82,196,255,0.07),rgba(167,139,250,0.05));border:1px solid var(--border);border-radius:20px;padding:24px 28px;display:flex;align-items:center;gap:20px;margin-bottom:28px;flex-wrap:wrap}
+.cavatar{width:58px;height:58px;border-radius:14px;background:linear-gradient(135deg,var(--accent),var(--accent2));display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-size:1.4rem;font-weight:800;color:#fff;flex-shrink:0}
+.cinfo{flex:1}
+.cname{font-family:'Syne',sans-serif;font-weight:700;font-size:1.25rem}
+.cmeta{color:var(--muted);font-size:0.8rem;margin-top:5px;display:flex;gap:14px;flex-wrap:wrap}
+.vpill{background:rgba(52,211,153,0.1);border:1px solid rgba(52,211,153,0.25);color:var(--accent3);padding:5px 14px;border-radius:20px;font-size:0.78rem;font-weight:700}
+
+/* SCORE GRID */
+.sgrid{display:grid;grid-template-columns:200px 1fr;gap:20px;margin-bottom:28px}
+@media(max-width:580px){.sgrid{grid-template-columns:1fr}}
+.mscore{background:var(--surface);border:1px solid var(--border);border-radius:20px;padding:28px 20px;text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.sring{position:relative;width:120px;height:120px;margin:0 auto 14px}
+.sring svg{transform:rotate(-90deg)}
+.sring .bgc{fill:none;stroke:rgba(255,255,255,0.05);stroke-width:10}
+.sring .prog{fill:none;stroke-width:10;stroke-linecap:round;transition:stroke-dashoffset 1.6s cubic-bezier(.4,0,.2,1)}
+.sring .val{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.sring .num{font-family:'Syne',sans-serif;font-weight:800;font-size:2rem}
+.sring .lbl{font-size:0.65rem;color:var(--muted);letter-spacing:1px;text-transform:uppercase}
+.stitle{font-family:'Syne',sans-serif;font-weight:700;font-size:.9rem}
+.ssub{color:var(--muted);font-size:.75rem;margin-top:3px}
+
+.subscores{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+@media(max-width:380px){.subscores{grid-template-columns:1fr}}
+.sscard{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:16px 18px;transition:all .3s}
+.sscard:hover{border-color:rgba(82,196,255,.25);transform:translateY(-2px)}
+.sstop{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
+.ssname{font-size:.78rem;color:var(--muted);font-weight:500}
+.ssnum{font-family:'Syne',sans-serif;font-weight:700;font-size:1.1rem}
+.bar{height:5px;background:rgba(255,255,255,0.05);border-radius:3px;overflow:hidden}
+.bf{height:100%;border-radius:3px;transition:width 1.6s cubic-bezier(.4,0,.2,1);width:0}
+
+/* ATS */
+.atscard{background:var(--surface);border:1px solid var(--border);border-radius:18px;padding:24px;margin-bottom:28px}
+.issues{display:flex;flex-direction:column;gap:10px;margin-top:14px}
+.issue{display:flex;gap:12px;align-items:flex-start;padding:14px;border-radius:10px;border:1px solid transparent}
+.issue.high{background:rgba(248,113,113,0.05);border-color:rgba(248,113,113,0.12)}
+.issue.medium{background:rgba(251,191,36,0.05);border-color:rgba(251,191,36,0.12)}
+.issue.low{background:rgba(52,211,153,0.05);border-color:rgba(52,211,153,0.12)}
+.isev{padding:2px 9px;border-radius:5px;font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.5px;flex-shrink:0;margin-top:2px}
+.high .isev{background:rgba(248,113,113,.18);color:var(--danger)}
+.medium .isev{background:rgba(251,191,36,.18);color:var(--accent4)}
+.low .isev{background:rgba(52,211,153,.18);color:var(--accent3)}
+.ititle{font-weight:500;margin-bottom:3px;font-size:.87rem}
+.ifix{color:var(--muted);font-size:.79rem}
+
+/* SW */
+.swgrid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:28px}
+@media(max-width:580px){.swgrid{grid-template-columns:1fr}}
+.swcard{background:var(--surface);border:1px solid var(--border);border-radius:18px;padding:22px}
+.swcard.str{border-top:3px solid var(--accent3)}
+.swcard.wk{border-top:3px solid var(--danger)}
+.swh{display:flex;align-items:center;gap:9px;margin-bottom:14px}
+.swico{width:32px;height:32px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:1rem}
+.str .swico{background:rgba(52,211,153,.1)}
+.wk .swico{background:rgba(248,113,113,.1)}
+.swtitle{font-family:'Syne',sans-serif;font-weight:700;font-size:.92rem}
+.switems{display:flex;flex-direction:column;gap:10px}
+.switem{padding:10px 12px;border-radius:9px;background:rgba(255,255,255,0.02)}
+.swititle{font-weight:500;font-size:.84rem;margin-bottom:2px}
+.swidesc{color:var(--muted);font-size:.77rem;line-height:1.5}
+
+/* CHIPS */
+.cgrid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:28px}
+@media(max-width:580px){.cgrid{grid-template-columns:1fr}}
+.cchip{background:var(--surface);border:1px solid var(--border);border-radius:18px;padding:22px}
+.ctitle{font-family:'Syne',sans-serif;font-weight:700;margin-bottom:14px;font-size:.92rem}
+.chips{display:flex;flex-wrap:wrap;gap:7px}
+.chip{padding:4px 12px;border-radius:20px;font-size:.75rem;font-weight:500;transition:all .2s}
+.chip:hover{transform:scale(1.05)}
+.cs{background:rgba(82,196,255,.08);border:1px solid rgba(82,196,255,.18);color:var(--accent)}
+.ck{background:rgba(251,191,36,.08);border:1px solid rgba(251,191,36,.18);color:var(--accent4)}
+.cj{background:rgba(167,139,250,.08);border:1px solid rgba(167,139,250,.18);color:var(--accent2)}
+
+/* SECTIONS */
+.secgrid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:28px}
+@media(max-width:580px){.secgrid{grid-template-columns:1fr}}
+.scard{background:var(--surface);border:1px solid var(--border);border-radius:18px;padding:22px}
+.slist{display:flex;flex-wrap:wrap;gap:7px;margin-top:12px}
+
+/* SUGGESTIONS */
+.suglist{display:flex;flex-direction:column;gap:10px;margin-bottom:28px}
+.sugitem{display:flex;gap:12px;padding:14px 16px;background:var(--surface);border:1px solid var(--border);border-radius:12px;transition:all .3s}
+.sugitem:hover{border-color:rgba(82,196,255,.2);transform:translateX(4px)}
+.sugdot{width:7px;height:7px;border-radius:50%;margin-top:5px;flex-shrink:0}
+.hp{background:var(--danger);box-shadow:0 0 8px rgba(248,113,113,.5)}
+.mp{background:var(--accent4);box-shadow:0 0 8px rgba(251,191,36,.5)}
+.lp{background:var(--accent3);box-shadow:0 0 8px rgba(52,211,153,.5)}
+.sugbody{flex:1}
+.sugcat{font-size:.68rem;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:var(--accent);margin-bottom:3px}
+.sugtxt{font-size:.84rem;line-height:1.55}
+
+/* VERDICT */
+.vcard{background:linear-gradient(135deg,rgba(82,196,255,0.05),rgba(167,139,250,0.05));border:1px solid rgba(82,196,255,.15);border-radius:20px;padding:30px;text-align:center;margin-bottom:48px;position:relative;overflow:hidden}
+.vcard::before{content:'';position:absolute;top:-50%;left:-50%;width:200%;height:200%;background:conic-gradient(from 0deg,transparent,rgba(82,196,255,0.02) 60deg,transparent 120deg);animation:rot 12s linear infinite}
+@keyframes rot{to{transform:rotate(360deg)}}
+.vico{font-size:2.8rem;margin-bottom:14px;position:relative;z-index:1}
+.vtxt{font-family:'Syne',sans-serif;font-weight:700;font-size:1rem;line-height:1.6;max-width:560px;margin:0 auto 20px;position:relative;z-index:1}
+.vbottom{display:flex;gap:14px;justify-content:center;align-items:center;flex-wrap:wrap;position:relative;z-index:1}
+.vnum{background:rgba(255,255,255,0.04);border:1px solid var(--border);border-radius:12px;padding:10px 22px;text-align:center}
+.vnumval{font-family:'Syne',sans-serif;font-size:1.8rem;font-weight:800}
+.vnumlbl{font-size:.68rem;color:var(--muted);text-transform:uppercase;letter-spacing:1px}
+.rbtn{display:inline-flex;align-items:center;gap:7px;padding:10px 24px;background:transparent;border:1px solid var(--accent);color:var(--accent);border-radius:10px;cursor:pointer;font-family:'Syne',sans-serif;font-weight:600;font-size:.85rem;transition:all .3s}
+.rbtn:hover{background:rgba(82,196,255,.08);transform:translateY(-2px)}
+
+footer{border-top:1px solid var(--border);padding:22px 0;text-align:center;color:var(--muted);font-size:.78rem}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+</style>
+</head>
+<body>
+<div class="bg-fx"></div>
+<div class="grid"></div>
+
+<header>
+  <div class="wrap hdr">
+    <div class="logo">ResumeIQ</div>
+    <div class="hbadge">✦ Vels University · BCA Project</div>
+  </div>
+</header>
+
+<main class="wrap">
+  <div class="hero">
+    <div class="htag">✦ Advanced ATS Parsing Engine</div>
+    <h1>Instant Resume<br><span class="grad">Analysis & Score</span></h1>
+    <p class="hsub">Upload a resume to extract ATS compatibility data, identify missing sections, and generate actionable improvement metrics.</p>
+    <div class="hstats">
+      <div class="hstat"><div class="hstat-num">20+</div><div class="hstat-lbl">Metrics Checked</div></div>
+      <div class="hstat"><div class="hstat-num">Local</div><div class="hstat-lbl">Secure Processing</div></div>
+      <div class="hstat"><div class="hstat-num">Instant</div><div class="hstat-lbl">Data Extraction</div></div>
+    </div>
+  </div>
+
+  <div class="upload-wrap">
+    <div class="dropzone" id="dz">
+      <div class="dicon">📄</div>
+      <div class="dtitle">Drop your resume here</div>
+      <div class="dsub">or click to browse files</div>
+      <div class="ftypes"><span class="ftype">PDF</span><span class="ftype">DOCX</span><span class="ftype">TXT</span></div>
+      <input type="file" id="fi" accept=".pdf,.docx,.txt">
+    </div>
+    <div class="finfo" id="finfo"><span>✅</span><span class="fname" id="fname"></span></div>
+    <div class="errbx" id="errbx"></div>
+    <button class="abtn" id="abtn" disabled onclick="analyze()">⚡ Run ATS Analysis</button>
+  </div>
+
+  <div class="loader" id="loader">
+    <div class="lring"></div>
+    <div class="ltxt">Processing data...</div>
+    <div class="lstep" id="lstep">📄 Reading document structure...</div>
+  </div>
+
+  <div id="res">
+    <div class="ccard" id="ccard"></div>
+
+    <div class="sechead"><div class="sectitle">System Scores</div><div class="secline"></div></div>
+    <div class="sgrid">
+      <div class="mscore">
+        <div class="sring">
+          <svg viewBox="0 0 120 120" width="120" height="120">
+            <circle class="bgc" cx="60" cy="60" r="50"/>
+            <circle class="prog" id="atsring" cx="60" cy="60" r="50"
+              stroke="url(#g1)" stroke-dasharray="314.16" stroke-dashoffset="314.16"/>
+            <defs><linearGradient id="g1" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" style="stop-color:#52c4ff"/><stop offset="100%" style="stop-color:#a78bfa"/>
+            </linearGradient></defs>
+          </svg>
+          <div class="val"><span class="num" id="atsnum">0</span><span class="lbl">/ 100</span></div>
+        </div>
+        <div class="stitle">ATS Match Score</div>
+        <div class="ssub" id="atslbl">—</div>
+      </div>
+      <div class="subscores" id="subscores"></div>
+    </div>
+
+    <div class="sechead"><div class="sectitle">Identified System Issues</div><div class="secline"></div></div>
+    <div class="atscard" id="atscard"></div>
+
+    <div class="sechead"><div class="sectitle">Pattern Recognition</div><div class="secline"></div></div>
+    <div class="swgrid" id="swgrid"></div>
+
+    <div class="sechead"><div class="sectitle">Document Sections</div><div class="secline"></div></div>
+    <div class="secgrid" id="secgrid"></div>
+
+    <div class="sechead"><div class="sectitle">Extracted Keywords</div><div class="secline"></div></div>
+    <div class="cgrid" id="cgrid"></div>
+
+    <div class="sechead"><div class="sectitle">Algorithmic Suggestions</div><div class="secline"></div></div>
+    <div class="suglist" id="suglist"></div>
+
+    <div class="sechead"><div class="sectitle">Final Assessment</div><div class="secline"></div></div>
+    <div class="vcard" id="vcard"></div>
+  </div>
+</main>
+
+<footer><div class="wrap">ResumeIQ · Vels University Data Science Final Project</div></footer>
+
+<script>
+// ─── Upload UI ───
+const dz=document.getElementById('dz'), fi=document.getElementById('fi');
+const abtn=document.getElementById('abtn'), finfo=document.getElementById('finfo');
+const fnameEl=document.getElementById('fname'), errbx=document.getElementById('errbx');
+let selFile=null;
+
+dz.onclick=()=>fi.click();
+dz.ondragover=e=>{e.preventDefault();dz.classList.add('over')};
+dz.ondragleave=()=>dz.classList.remove('over');
+dz.ondrop=e=>{e.preventDefault();dz.classList.remove('over');if(e.dataTransfer.files[0])setFile(e.dataTransfer.files[0])};
+fi.onchange=e=>{if(e.target.files[0])setFile(e.target.files[0])};
+
+function setFile(f){
+  const ext=f.name.split('.').pop().toLowerCase();
+  if(!['pdf','docx','txt'].includes(ext)){showErr('Please upload PDF, DOCX, or TXT');return;}
+  selFile=f; fnameEl.textContent=f.name;
+  finfo.classList.add('show'); abtn.disabled=false; errbx.classList.remove('show');
+}
+function showErr(m){errbx.textContent='⚠️ '+m;errbx.classList.add('show')}
+
+// ─── MAIN ANALYSIS (Connects to Python Backend) ───
+async function analyze(){
+  if(!selFile) return;
+  errbx.classList.remove('show');
+  document.getElementById('res').classList.remove('show');
+  document.getElementById('loader').classList.add('show');
+  abtn.disabled=true;
+
+  const steps=['📄 Extracting text...','🔍 Running Regex patterns...','📊 Calculating metrics...','✨ Generating final output...'];
+  let si=0;
+  const lstep=document.getElementById('lstep');
+  lstep.textContent=steps[0];
+  const si2=setInterval(()=>{si=(si+1)%steps.length;lstep.textContent=steps[si]},1200);
+
+  try{
+    const formData = new FormData();
+    formData.append('resume', selFile);
+
+    const response = await fetch('/analyze', {
+      method: 'POST',
+      body: formData
+    });
+    
+    const result = await response.json();
+
+    clearInterval(si2);
+    document.getElementById('loader').classList.remove('show');
+
+    if (!response.ok || !result.success) {
+      showErr(result.error || 'Failed to analyze resume.');
+      abtn.disabled=false; 
+      return;
+    }
+
+    const d = result.analysis;
+    
+    const mappedData = {
+        name: d.candidate_name || 'Unknown',
+        email: d.contact_info?.email,
+        phone: d.contact_info?.phone,
+        linkedin: d.contact_info?.linkedin,
+        wordCount: d.word_count || 0,
+        scores: {
+            ats: d.scores?.ats_score || 0,
+            overall: d.scores?.overall_score || 0,
+            content: d.scores?.content_score || 0,
+            format: d.scores?.format_score || 0,
+            keywords: d.scores?.keywords_score || 0,
+            impact: d.scores?.impact_score || 0
+        },
+        actionVerbScore: d.action_verb_score || 0,
+        quantScore: d.quantification_score || 0,
+        found: d.sections_found || [],
+        missing: d.sections_missing || [],
+        skills: d.skills_detected || [],
+        strengths: d.strengths || [],
+        weaknesses: d.weaknesses || [],
+        atsIssues: d.ats_issues || [],
+        suggestions: d.suggestions || [],
+        keywordSuggestions: d.keyword_suggestions || [],
+        jobFit: d.job_titles_fit || [],
+        verdict: d.overall_verdict || 'Analysis complete.'
+    };
+
+    render(mappedData);
+    abtn.disabled=false;
+  }catch(e){
+    clearInterval(si2);
+    document.getElementById('loader').classList.remove('show');
+    showErr('Server error: Could not connect to the backend.');
+    abtn.disabled=false;
+  }
+}
+
+// ─── RENDER ───
+function sc(s){return s>=80?'var(--accent3)':s>=60?'var(--accent)':s>=40?'var(--accent4)':'var(--danger)'}
+function sl(s){return s>=80?'Excellent':s>=60?'Good':s>=40?'Fair':'Needs Work'}
+function animNum(el,t,dur=1400){let s=0;const step=ts=>{if(!s)s=ts;const p=Math.min((ts-s)/dur,1),e=1-Math.pow(1-p,3);el.textContent=Math.round(e*t);if(p<1)requestAnimationFrame(step)};requestAnimationFrame(step)}
+
+function render(d){
+  const ini=d.name.split(' ').map(w=>w[0]).join('').slice(0,2).toUpperCase()||'?';
+  document.getElementById('ccard').innerHTML=`
+    <div class="cavatar">${ini}</div>
+    <div class="cinfo">
+      <div class="cname">${d.name}</div>
+      <div class="cmeta">
+        ${d.email?`<span>✉️ ${d.email}</span>`:''}
+        ${d.phone?`<span>📞 ${d.phone}</span>`:''}
+        ${d.linkedin?`<span>🔗 ${d.linkedin}</span>`:''}
+        <span>📝 ${d.wordCount} words</span>
+      </div>
+    </div>
+    <div class="vpill">${sl(d.scores.overall)}</div>`;
+
+  setTimeout(()=>{
+    const c=314.16, off=c-(d.scores.ats/100)*c;
+    document.getElementById('atsring').style.strokeDashoffset=off;
+    animNum(document.getElementById('atsnum'),d.scores.ats);
+    const lbl=document.getElementById('atslbl');
+    lbl.textContent=sl(d.scores.ats); lbl.style.color=sc(d.scores.ats);
+  },200);
+
+  const subs=[
+    {k:'content',l:'Content',i:'📝'},{k:'format',l:'Format',i:'🎨'},
+    {k:'keywords',l:'Keywords',i:'🔑'},{k:'impact',l:'Impact',i:'⚡'},
+    {k:'actionVerbScore',l:'Action Verbs',i:'💬',direct:true},{k:'quantScore',l:'Metrics',i:'📊',direct:true}
+  ];
+  document.getElementById('subscores').innerHTML=subs.map(s=>{
+    const v=s.direct?d[s.k]:d.scores[s.k];
+    return `<div class="sscard"><div class="sstop"><span class="ssname">${s.i} ${s.l}</span><span class="ssnum" style="color:${sc(v)}">${v}</span></div><div class="bar"><div class="bf" data-w="${v}" style="background:${sc(v)}"></div></div></div>`;
+  }).join('');
+  setTimeout(()=>document.querySelectorAll('.bf').forEach(e=>e.style.width=e.dataset.w+'%'),300);
+
+  const ac=document.getElementById('atscard');
+  ac.innerHTML=d.atsIssues.length
+    ?`<div style="color:var(--muted);font-size:.82rem;margin-bottom:10px">${d.atsIssues.length} issue${d.atsIssues.length>1?'s':''} found</div><div class="issues">${d.atsIssues.map(i=>`<div class="issue ${i.severity}"><span class="isev">${i.severity}</span><div><div class="ititle">${i.issue}</div><div class="ifix">💡 ${i.fix}</div></div></div>`).join('')}</div>`
+    :`<div style="text-align:center;padding:16px;color:var(--accent3)">✅ No major parsing issues!</div>`;
+
+  document.getElementById('swgrid').innerHTML=`
+    <div class="swcard str"><div class="swh"><div class="swico">💪</div><div class="swtitle">Detected Strengths</div></div><div class="switems">${d.strengths.map(s=>`<div class="switem"><div class="swititle" style="color:var(--accent3)">✓ ${s.title}</div><div class="swidesc">${s.description}</div></div>`).join('')}</div></div>
+    <div class="swcard wk"><div class="swh"><div class="swico">⚠️</div><div class="swtitle">Identified Weaknesses</div></div><div class="switems">${d.weaknesses.map(w=>`<div class="switem"><div class="swititle" style="color:var(--danger)">✗ ${w.title}</div><div class="swidesc">${w.description}</div></div>`).join('')}</div></div>`;
+
+  document.getElementById('secgrid').innerHTML=`
+    <div class="scard"><div style="font-family:'Syne',sans-serif;font-weight:700">✅ Parsed Successfully</div><div class="slist">${d.found.map(s=>`<span class="chip cs">✓ ${s}</span>`).join('')}</div></div>
+    <div class="scard"><div style="font-family:'Syne',sans-serif;font-weight:700">❌ Missing Blocks</div><div class="slist">${d.missing.length?d.missing.map(s=>`<span class="chip ck">✗ ${s}</span>`).join(''):'<span style="color:var(--accent3);font-size:.82rem">All standard blocks present!</span>'}</div></div>`;
+
+  document.getElementById('cgrid').innerHTML=`
+    <div class="cchip"><div class="ctitle">🛠 Detected Stack (${d.skills.length})</div><div class="chips">${d.skills.length?d.skills.map(s=>`<span class="chip cs">${s}</span>`).join(''):'<span style="color:var(--muted);font-size:.82rem">No keywords detected</span>'}</div></div>
+    <div class="cchip">
+      <div class="ctitle">🔑 Recommended Additions</div><div class="chips">${d.keywordSuggestions.map(k=>`<span class="chip ck">${k}</span>`).join('')}</div>
+      <div class="ctitle" style="margin-top:14px">🎯 Target Roles</div><div class="chips">${d.jobFit.map(j=>`<span class="chip cj">${j}</span>`).join('')}</div>
+    </div>`;
+
+  const pri=['high','medium','low'];
+  document.getElementById('suglist').innerHTML=[...d.suggestions].sort((a,b)=>pri.indexOf(a.priority)-pri.indexOf(b.priority)).map(s=>`
+    <div class="sugitem"><div class="sugdot ${s.priority==='high'?'hp':s.priority==='medium'?'mp':'lp'}"></div><div class="sugbody"><div class="sugcat">${s.category} · ${s.priority} priority</div><div class="sugtxt">${s.suggestion}</div></div></div>`).join('');
+
+  const ov=d.scores.overall, em=ov>=80?'🏆':ov>=60?'👍':ov>=40?'📈':'💪';
+  document.getElementById('vcard').innerHTML=`
+    <div class="vico">${em}</div>
+    <div class="vtxt">${d.verdict}</div>
+    <div class="vbottom">
+      <div class="vnum"><div class="vnumval" style="color:${sc(ov)}">${ov}</div><div class="vnumlbl">System Score</div></div>
+      <div class="vnum"><div class="vnumval" style="color:${sc(d.scores.ats)}">${d.scores.ats}</div><div class="vnumlbl">ATS Match</div></div>
+      <button class="rbtn" onclick="reset()">↩ Analyze New Document</button>
+    </div>`;
+
+  document.getElementById('res').classList.add('show');
+  document.getElementById('res').scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+function reset(){
+  document.getElementById('res').classList.remove('show');
+  selFile=null; fi.value='';
+  finfo.classList.remove('show'); abtn.disabled=true;
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+</script>
+</body>
+</html>
