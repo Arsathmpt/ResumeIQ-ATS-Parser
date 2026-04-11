@@ -17,23 +17,28 @@ body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;min
 @keyframes drift2{0%,100%{transform:translate(0,0)}50%{transform:translate(-40px,-60px)}}
 .grid-bg{position:fixed;inset:0;z-index:0;pointer-events:none;background-image:linear-gradient(rgba(82,196,255,0.02) 1px,transparent 1px),linear-gradient(90deg,rgba(82,196,255,0.02) 1px,transparent 1px);background-size:50px 50px}
 .wrap{max-width:1060px;margin:0 auto;padding:0 20px;position:relative;z-index:1}
+
+/* HEADER */
 header{padding:20px 0;border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100;backdrop-filter:blur(24px);background:rgba(6,9,16,0.88)}
-.hdr{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.hdr{display:flex;align-items:center;justify-content:space-between;gap:12px}
 .logo{font-family:'Syne',sans-serif;font-weight:800;font-size:1.4rem;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-.hright{display:flex;align-items:center;gap:10px}
-.hbadge{background:rgba(52,211,153,0.1);border:1px solid rgba(52,211,153,0.2);color:var(--accent3);padding:4px 12px;border-radius:20px;font-size:0.72rem;font-weight:600;letter-spacing:.5px}
-.history-btn{background:rgba(82,196,255,0.08);border:1px solid rgba(82,196,255,0.2);color:var(--accent);padding:6px 14px;border-radius:10px;font-size:0.78rem;font-weight:600;cursor:pointer;transition:all .2s;display:flex;align-items:center;gap:6px}
+.history-btn{background:rgba(82,196,255,0.08);border:1px solid rgba(82,196,255,0.2);color:var(--accent);padding:6px 16px;border-radius:10px;font-size:0.78rem;font-weight:600;cursor:pointer;transition:all .2s;display:flex;align-items:center;gap:7px}
 .history-btn:hover{background:rgba(82,196,255,0.15)}
+.hist-badge{background:rgba(82,196,255,.2);border-radius:10px;padding:1px 8px;font-size:.65rem}
+
+/* HERO */
 .hero{padding:55px 0 38px;text-align:center}
 .htag{display:inline-flex;align-items:center;gap:6px;background:rgba(167,139,250,0.08);border:1px solid rgba(167,139,250,0.18);color:var(--accent2);padding:5px 14px;border-radius:20px;font-size:0.76rem;font-weight:500;margin-bottom:20px;animation:fadeUp .6s ease both}
 h1{font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(2rem,5vw,3.6rem);line-height:1.08;letter-spacing:-1.5px;animation:fadeUp .7s .1s ease both}
 .grad{background:linear-gradient(135deg,var(--accent),var(--accent2),var(--accent3));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
 .hsub{color:var(--muted);font-size:.95rem;max-width:480px;margin:14px auto 0;line-height:1.7;animation:fadeUp .7s .2s ease both}
+
+/* TWO COL */
 .two-col{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:32px}
 @media(max-width:640px){.two-col{grid-template-columns:1fr}}
 .panel{background:var(--surface);border:1px solid var(--border);border-radius:20px;padding:22px}
 .panel-title{font-family:'Syne',sans-serif;font-weight:700;font-size:.92rem;margin-bottom:14px;display:flex;align-items:center;gap:8px}
-.panel-badge{background:rgba(82,196,255,0.1);color:var(--accent);font-size:.68rem;font-weight:700;padding:2px 8px;border-radius:6px;letter-spacing:.5px}
+.step-badge{background:rgba(82,196,255,0.1);color:var(--accent);font-size:.68rem;font-weight:700;padding:2px 8px;border-radius:6px;letter-spacing:.5px}
 .dropzone{border:2px dashed rgba(82,196,255,0.18);border-radius:14px;padding:36px 20px;text-align:center;cursor:pointer;transition:all .3s;background:rgba(6,9,16,0.5)}
 .dropzone:hover,.dropzone.over{border-color:var(--accent);background:rgba(82,196,255,0.03);transform:translateY(-2px)}
 .dicon{font-size:2rem;margin-bottom:12px;display:block}
@@ -44,26 +49,33 @@ h1{font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(2rem,5vw,3.6rem
 #fi{display:none}
 .finfo{display:none;margin-top:10px;align-items:center;justify-content:center;gap:8px;background:rgba(52,211,153,0.07);border:1px solid rgba(52,211,153,0.15);border-radius:8px;padding:8px 14px;font-size:.82rem;color:var(--accent3)}
 .finfo.show{display:flex}
-textarea{width:100%;background:rgba(6,9,16,0.5);border:1px solid var(--border);border-radius:12px;padding:14px;color:var(--text);font-family:'DM Sans',sans-serif;font-size:.85rem;resize:vertical;min-height:160px;outline:none;transition:border-color .2s;line-height:1.6}
+textarea{width:100%;background:rgba(6,9,16,0.5);border:1px solid var(--border);border-radius:12px;padding:14px;color:var(--text);font-family:'DM Sans',sans-serif;font-size:.85rem;resize:vertical;min-height:170px;outline:none;transition:border-color .2s;line-height:1.6}
 textarea:focus{border-color:rgba(82,196,255,0.4)}
 textarea::placeholder{color:var(--muted)}
-.jd-hint{color:var(--muted);font-size:.75rem;margin-top:8px;line-height:1.5}
+.jd-hint{color:var(--muted);font-size:.74rem;margin-top:8px}
+
 .abtn{display:block;width:100%;margin-top:16px;padding:16px;background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;border:none;border-radius:14px;font-family:'Syne',sans-serif;font-weight:700;font-size:.98rem;cursor:pointer;transition:all .3s}
 .abtn:hover{transform:translateY(-2px);box-shadow:0 12px 36px rgba(82,196,255,.22)}
 .abtn:disabled{opacity:.35;cursor:not-allowed;transform:none}
 .errbx{display:none;background:rgba(248,113,113,0.07);border:1px solid rgba(248,113,113,0.18);border-radius:10px;padding:10px 14px;color:var(--danger);margin-top:10px;font-size:.82rem}
 .errbx.show{display:block}
+
+/* LOADER */
 .loader{display:none;text-align:center;padding:56px 20px}
 .loader.show{display:block}
 .lring{width:60px;height:60px;margin:0 auto 18px;border:3px solid rgba(82,196,255,.1);border-top-color:var(--accent);border-radius:50%;animation:spin .8s linear infinite}
 @keyframes spin{to{transform:rotate(360deg)}}
 .ltxt{font-family:'Syne',sans-serif;font-size:.98rem;color:var(--accent);margin-bottom:5px}
 .lstep{font-size:.8rem;color:var(--muted)}
+
+/* RESULTS */
 #res{display:none}
 #res.show{display:block;animation:fadeUp .6s ease}
 .sechead{display:flex;align-items:center;gap:12px;margin:42px 0 18px}
 .sectitle{font-family:'Syne',sans-serif;font-weight:700;font-size:1.3rem;white-space:nowrap}
 .secline{flex:1;height:1px;background:var(--border)}
+
+/* JOB MATCH */
 .jmatch-banner{background:linear-gradient(135deg,rgba(82,196,255,0.08),rgba(167,139,250,0.08));border:1px solid rgba(82,196,255,0.2);border-radius:20px;padding:24px 28px;margin-bottom:24px;display:flex;align-items:center;gap:20px;flex-wrap:wrap}
 .jmatch-ring{position:relative;width:100px;height:100px;flex-shrink:0}
 .jmatch-ring svg{transform:rotate(-90deg)}
@@ -74,12 +86,18 @@ textarea::placeholder{color:var(--muted)}
 .jmatch-kw{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
 .kw-match{background:rgba(52,211,153,0.1);border:1px solid rgba(52,211,153,0.2);color:var(--accent3);padding:3px 10px;border-radius:20px;font-size:.72rem;font-weight:500}
 .kw-miss{background:rgba(248,113,113,0.08);border:1px solid rgba(248,113,113,0.18);color:var(--danger);padding:3px 10px;border-radius:20px;font-size:.72rem;font-weight:500}
-.ccard{background:linear-gradient(135deg,rgba(82,196,255,0.06),rgba(167,139,250,0.04));border:1px solid var(--border);border-radius:18px;padding:22px 26px;display:flex;align-items:center;gap:18px;margin-bottom:24px;flex-wrap:wrap}
-.cavatar{width:54px;height:54px;border-radius:14px;background:linear-gradient(135deg,var(--accent),var(--accent2));display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-size:1.3rem;font-weight:800;color:#fff;flex-shrink:0}
-.cinfo{flex:1}
-.cname{font-family:'Syne',sans-serif;font-weight:700;font-size:1.2rem}
-.cmeta{color:var(--muted);font-size:.78rem;margin-top:4px;display:flex;gap:12px;flex-wrap:wrap}
-.vpill{background:rgba(52,211,153,0.1);border:1px solid rgba(52,211,153,0.22);color:var(--accent3);padding:4px 12px;border-radius:20px;font-size:.75rem;font-weight:700}
+
+/* CANDIDATE - clean compact card */
+.ccard{background:linear-gradient(135deg,rgba(82,196,255,0.06),rgba(167,139,250,0.04));border:1px solid var(--border);border-radius:18px;padding:20px 24px;display:flex;align-items:center;gap:18px;margin-bottom:24px;flex-wrap:wrap}
+.cavatar{width:52px;height:52px;border-radius:14px;background:linear-gradient(135deg,var(--accent),var(--accent2));display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-size:1.3rem;font-weight:800;color:#fff;flex-shrink:0}
+.cinfo{flex:1;min-width:0}
+.cname{font-family:'Syne',sans-serif;font-weight:700;font-size:1.15rem;margin-bottom:6px}
+.cmeta{display:flex;gap:10px;flex-wrap:wrap}
+.cmeta-item{display:flex;align-items:center;gap:5px;background:rgba(255,255,255,0.04);border:1px solid var(--border);border-radius:8px;padding:4px 10px;font-size:.78rem;color:var(--muted)}
+.cmeta-item.has-val{color:var(--text)}
+.vpill{background:rgba(52,211,153,0.1);border:1px solid rgba(52,211,153,0.22);color:var(--accent3);padding:4px 14px;border-radius:20px;font-size:.75rem;font-weight:700;flex-shrink:0}
+
+/* SCORES */
 .sgrid{display:grid;grid-template-columns:190px 1fr;gap:18px;margin-bottom:24px}
 @media(max-width:580px){.sgrid{grid-template-columns:1fr}}
 .mscore{background:var(--surface);border:1px solid var(--border);border-radius:18px;padding:26px 18px;text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center}
@@ -100,6 +118,8 @@ textarea::placeholder{color:var(--muted)}
 .ssnum{font-family:'Syne',sans-serif;font-weight:700;font-size:1.05rem}
 .bar{height:5px;background:rgba(255,255,255,0.05);border-radius:3px;overflow:hidden}
 .bf{height:100%;border-radius:3px;transition:width 1.6s cubic-bezier(.4,0,.2,1);width:0}
+
+/* ATS */
 .atscard{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:22px;margin-bottom:24px}
 .issues{display:flex;flex-direction:column;gap:9px;margin-top:12px}
 .issue{display:flex;gap:11px;align-items:flex-start;padding:12px;border-radius:9px;border:1px solid transparent}
@@ -112,6 +132,8 @@ textarea::placeholder{color:var(--muted)}
 .low .isev{background:rgba(52,211,153,.15);color:var(--accent3)}
 .ititle{font-weight:500;margin-bottom:2px;font-size:.84rem}
 .ifix{color:var(--muted);font-size:.76rem}
+
+/* SW */
 .swgrid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:24px}
 @media(max-width:580px){.swgrid{grid-template-columns:1fr}}
 .swcard{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:20px}
@@ -126,6 +148,8 @@ textarea::placeholder{color:var(--muted)}
 .switem{padding:9px 11px;border-radius:8px;background:rgba(255,255,255,0.02)}
 .swititle{font-weight:500;font-size:.82rem;margin-bottom:2px}
 .swidesc{color:var(--muted);font-size:.74rem;line-height:1.5}
+
+/* CHIPS */
 .cgrid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:24px}
 @media(max-width:580px){.cgrid{grid-template-columns:1fr}}
 .cchip{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:20px}
@@ -137,10 +161,14 @@ textarea::placeholder{color:var(--muted)}
 .ck{background:rgba(251,191,36,.08);border:1px solid rgba(251,191,36,.16);color:var(--accent4)}
 .cj{background:rgba(167,139,250,.08);border:1px solid rgba(167,139,250,.16);color:var(--accent2)}
 .cmatch{background:rgba(52,211,153,.08);border:1px solid rgba(52,211,153,.16);color:var(--accent3)}
+
+/* SECTIONS */
 .secgrid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:24px}
 @media(max-width:580px){.secgrid{grid-template-columns:1fr}}
 .scard{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:20px}
 .slist{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+
+/* SUGGESTIONS */
 .suglist{display:flex;flex-direction:column;gap:9px;margin-bottom:24px}
 .sugitem{display:flex;gap:11px;padding:13px 15px;background:var(--surface);border:1px solid var(--border);border-radius:11px;transition:all .3s}
 .sugitem:hover{border-color:rgba(82,196,255,.18);transform:translateX(4px)}
@@ -151,7 +179,9 @@ textarea::placeholder{color:var(--muted)}
 .sugbody{flex:1}
 .sugcat{font-size:.66rem;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:var(--accent);margin-bottom:3px}
 .sugtxt{font-size:.82rem;line-height:1.55}
-.vcard{background:linear-gradient(135deg,rgba(82,196,255,0.05),rgba(167,139,250,0.05));border:1px solid rgba(82,196,255,.14);border-radius:18px;padding:28px;text-align:center;margin-bottom:40px;position:relative;overflow:hidden}
+
+/* VERDICT */
+.vcard{background:linear-gradient(135deg,rgba(82,196,255,0.05),rgba(167,139,250,0.05));border:1px solid rgba(82,196,255,.14);border-radius:18px;padding:28px;text-align:center;margin-bottom:48px;position:relative;overflow:hidden}
 .vcard::before{content:'';position:absolute;top:-50%;left:-50%;width:200%;height:200%;background:conic-gradient(from 0deg,transparent,rgba(82,196,255,0.015) 60deg,transparent 120deg);animation:rot 14s linear infinite}
 @keyframes rot{to{transform:rotate(360deg)}}
 .vico{font-size:2.6rem;margin-bottom:12px;position:relative;z-index:1}
@@ -162,34 +192,45 @@ textarea::placeholder{color:var(--muted)}
 .vnumlbl{font-size:.65rem;color:var(--muted);text-transform:uppercase;letter-spacing:1px}
 .rbtn{display:inline-flex;align-items:center;gap:6px;padding:9px 22px;background:transparent;border:1px solid var(--accent);color:var(--accent);border-radius:10px;cursor:pointer;font-family:'Syne',sans-serif;font-weight:600;font-size:.82rem;transition:all .3s}
 .rbtn:hover{background:rgba(82,196,255,.08);transform:translateY(-2px)}
-.history-panel{display:none;position:fixed;top:0;right:0;height:100vh;width:360px;background:var(--surface);border-left:1px solid var(--border);z-index:200;overflow-y:auto;padding:24px;animation:slideIn .3s ease}
-.history-panel.open{display:block}
+
+/* HISTORY PANEL - fixed and clean */
+.overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.55);z-index:199;backdrop-filter:blur(4px)}
+.overlay.open{display:block}
+.history-panel{position:fixed;top:0;right:0;height:100vh;width:340px;background:var(--surface);border-left:1px solid var(--border);z-index:200;flex-direction:column;display:none}
+.history-panel.open{display:flex;animation:slideIn .3s ease}
 @keyframes slideIn{from{transform:translateX(100%)}to{transform:translateX(0)}}
-.hp-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px}
-.hp-title{font-family:'Syne',sans-serif;font-weight:800;font-size:1.1rem}
-.hp-close{background:rgba(255,255,255,0.05);border:1px solid var(--border);color:var(--text);width:32px;height:32px;border-radius:8px;cursor:pointer;font-size:1rem;transition:all .2s}
+.hp-header{padding:20px 20px 16px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;flex-shrink:0}
+.hp-title{font-family:'Syne',sans-serif;font-weight:800;font-size:1rem}
+.hp-close{background:rgba(255,255,255,0.05);border:1px solid var(--border);color:var(--text);width:30px;height:30px;border-radius:8px;cursor:pointer;font-size:.9rem;transition:all .2s;display:flex;align-items:center;justify-content:center}
 .hp-close:hover{background:rgba(248,113,113,0.1);color:var(--danger)}
-.hp-stats{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:20px}
-.hp-stat{background:rgba(255,255,255,0.03);border:1px solid var(--border);border-radius:10px;padding:10px;text-align:center}
-.hp-stat-num{font-family:'Syne',sans-serif;font-weight:800;font-size:1.2rem;color:var(--accent)}
-.hp-stat-lbl{font-size:.65rem;color:var(--muted);margin-top:2px}
-.hp-empty{text-align:center;padding:40px 20px;color:var(--muted);font-size:.85rem}
-.hp-empty-ico{font-size:2.5rem;margin-bottom:12px}
-.history-item{background:rgba(255,255,255,0.02);border:1px solid var(--border);border-radius:12px;padding:14px;margin-bottom:10px;transition:all .2s}
+.hp-stats{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;padding:14px 20px;border-bottom:1px solid var(--border);flex-shrink:0}
+.hp-stat{background:rgba(255,255,255,0.03);border:1px solid var(--border);border-radius:10px;padding:10px 8px;text-align:center}
+.hp-stat-num{font-family:'Syne',sans-serif;font-weight:800;font-size:1.1rem;color:var(--accent)}
+.hp-stat-lbl{font-size:.62rem;color:var(--muted);margin-top:2px}
+/* scrollable list area */
+.hp-list{flex:1;overflow-y:auto;padding:14px 20px;display:flex;flex-direction:column;gap:8px}
+.hp-list::-webkit-scrollbar{width:4px}
+.hp-list::-webkit-scrollbar-track{background:transparent}
+.hp-list::-webkit-scrollbar-thumb{background:rgba(82,196,255,.2);border-radius:2px}
+.hp-empty{text-align:center;padding:40px 20px;color:var(--muted);font-size:.85rem;margin:auto}
+.hp-empty-ico{font-size:2rem;margin-bottom:10px}
+/* compact history card */
+.history-item{background:rgba(255,255,255,0.02);border:1px solid var(--border);border-radius:12px;padding:12px 14px;transition:all .2s;flex-shrink:0}
 .history-item:hover{border-color:rgba(82,196,255,.25);background:rgba(82,196,255,.03)}
-.hi-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px}
-.hi-name{font-family:'Syne',sans-serif;font-weight:700;font-size:.88rem}
-.hi-date{font-size:.68rem;color:var(--muted)}
-.hi-scores{display:flex;gap:6px;flex-wrap:wrap}
-.hi-score{font-size:.68rem;padding:2px 8px;border-radius:6px;font-weight:600}
+.hi-row1{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px}
+.hi-name{font-family:'Syne',sans-serif;font-weight:700;font-size:.84rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:170px}
+.hi-date{font-size:.65rem;color:var(--muted);flex-shrink:0}
+.hi-scores{display:flex;gap:5px;flex-wrap:wrap}
+.hi-score{font-size:.66rem;padding:2px 8px;border-radius:6px;font-weight:600}
 .hi-score.ats{background:rgba(82,196,255,.1);color:var(--accent)}
 .hi-score.overall{background:rgba(52,211,153,.1);color:var(--accent3)}
 .hi-score.match{background:rgba(167,139,250,.1);color:var(--accent2)}
-.hi-job{font-size:.72rem;color:var(--muted);margin-top:6px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.hp-clear{width:100%;margin-top:14px;padding:9px;background:rgba(248,113,113,0.08);border:1px solid rgba(248,113,113,0.18);color:var(--danger);border-radius:10px;cursor:pointer;font-family:'Syne',sans-serif;font-weight:600;font-size:.8rem;transition:all .2s}
+.hi-job{font-size:.7rem;color:var(--muted);margin-top:5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+/* footer with clear button always visible */
+.hp-footer{padding:12px 20px;border-top:1px solid var(--border);flex-shrink:0}
+.hp-clear{width:100%;padding:9px;background:rgba(248,113,113,0.08);border:1px solid rgba(248,113,113,0.18);color:var(--danger);border-radius:10px;cursor:pointer;font-family:'Syne',sans-serif;font-weight:600;font-size:.8rem;transition:all .2s}
 .hp-clear:hover{background:rgba(248,113,113,0.15)}
-.overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:199;backdrop-filter:blur(4px)}
-.overlay.open{display:block}
+
 footer{border-top:1px solid var(--border);padding:20px 0;text-align:center;color:var(--muted);font-size:.75rem;margin-top:20px}
 @keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
 </style>
@@ -197,6 +238,7 @@ footer{border-top:1px solid var(--border);padding:20px 0;text-align:center;color
 <body>
 <div class="bg-fx"></div>
 <div class="grid-bg"></div>
+
 <div class="overlay" id="overlay" onclick="closeHistory()"></div>
 <div class="history-panel" id="histPanel">
   <div class="hp-header">
@@ -204,27 +246,29 @@ footer{border-top:1px solid var(--border);padding:20px 0;text-align:center;color
     <button class="hp-close" onclick="closeHistory()">✕</button>
   </div>
   <div class="hp-stats" id="hpStats"></div>
-  <div id="histList"></div>
-  <button class="hp-clear" onclick="clearHistory()" id="hpClear" style="display:none">🗑 Clear All History</button>
+  <div class="hp-list" id="histList"></div>
+  <div class="hp-footer" id="hpFooter" style="display:none">
+    <button class="hp-clear" onclick="clearHistory()">🗑 Clear All History</button>
+  </div>
 </div>
+
 <header>
   <div class="wrap hdr">
     <div class="logo">ResumeIQ</div>
-    <div class="hright">
-      <div class="hbadge">✦ Vels University · BCA Data Science Project</div>
-      <button class="history-btn" onclick="openHistory()">📋 History <span id="histCount" style="background:rgba(82,196,255,.2);border-radius:10px;padding:1px 7px;font-size:.65rem">0</span></button>
-    </div>
+    <button class="history-btn" onclick="openHistory()">📋 History <span class="hist-badge" id="histCount">0</span></button>
   </div>
 </header>
+
 <main class="wrap">
   <div class="hero">
-    <div class="htag">✦ Advanced ATS & Job Match Engine</div>
+    <div class="htag">✦ Smart Resume Analysis</div>
     <h1>Resume + Job<br><span class="grad">Perfect Match Score</span></h1>
     <p class="hsub">Upload your resume, paste a job description, and get an instant compatibility score with personalized recommendations.</p>
   </div>
+
   <div class="two-col">
     <div class="panel">
-      <div class="panel-title">📄 Your Resume <span class="panel-badge">STEP 1</span></div>
+      <div class="panel-title">📄 Your Resume <span class="step-badge">STEP 1</span></div>
       <div class="dropzone" id="dz">
         <span class="dicon">📄</span>
         <div class="dtitle">Drop resume here</div>
@@ -235,24 +279,29 @@ footer{border-top:1px solid var(--border);padding:20px 0;text-align:center;color
       <div class="finfo" id="finfo">✅ <span id="fname"></span></div>
     </div>
     <div class="panel">
-      <div class="panel-title">💼 Job Description <span class="panel-badge">STEP 2</span></div>
-      <textarea id="jdText" placeholder="Paste the job description here...&#10;&#10;Example:&#10;We are looking for a Software Engineer with 2+ years of experience in Python, React, and SQL. Strong communication skills required..."></textarea>
-      <div class="jd-hint">💡 The more detailed the job description, the more accurate your match score will be. You can also skip this and just analyze your resume.</div>
+      <div class="panel-title">💼 Job Description <span class="step-badge">STEP 2 · Optional</span></div>
+      <textarea id="jdText" placeholder="Paste the job description here...&#10;&#10;Example:&#10;We are looking for a Data Scientist with experience in Python, SQL, Machine Learning, and TensorFlow..."></textarea>
+      <div class="jd-hint">💡 Optional — paste a job description to get a match score. Leave empty for a general analysis.</div>
     </div>
   </div>
+
   <div class="errbx" id="errbx"></div>
-  <button class="abtn" id="abtn" onclick="analyze()">⚡ Run ATS Analysis & Job Match</button>
+  <button class="abtn" id="abtn" onclick="analyze()">⚡ Analyze Resume</button>
+
   <div class="loader" id="loader">
     <div class="lring"></div>
     <div class="ltxt">Analyzing your resume...</div>
     <div class="lstep" id="lstep">📄 Reading document...</div>
   </div>
+
   <div id="res">
     <div id="jmatchBanner" style="display:none">
       <div class="sechead"><div class="sectitle">Job Match Score</div><div class="secline"></div></div>
       <div class="jmatch-banner" id="jmatchCard"></div>
     </div>
+
     <div class="ccard" id="ccard"></div>
+
     <div class="sechead"><div class="sectitle">Performance Scores</div><div class="secline"></div></div>
     <div class="sgrid">
       <div class="mscore">
@@ -269,61 +318,158 @@ footer{border-top:1px solid var(--border);padding:20px 0;text-align:center;color
       </div>
       <div class="subscores" id="subscores"></div>
     </div>
+
     <div class="sechead"><div class="sectitle">ATS Issues</div><div class="secline"></div></div>
     <div class="atscard" id="atscard"></div>
+
     <div class="sechead"><div class="sectitle">Strengths & Weaknesses</div><div class="secline"></div></div>
     <div class="swgrid" id="swgrid"></div>
+
     <div class="sechead"><div class="sectitle">Resume Sections</div><div class="secline"></div></div>
     <div class="secgrid" id="secgrid"></div>
+
     <div class="sechead"><div class="sectitle">Skills & Keywords</div><div class="secline"></div></div>
     <div class="cgrid" id="cgrid"></div>
+
     <div class="sechead"><div class="sectitle">Recommendations</div><div class="secline"></div></div>
     <div class="suglist" id="suglist"></div>
+
     <div class="sechead"><div class="sectitle">Overall Verdict</div><div class="secline"></div></div>
     <div class="vcard" id="vcard"></div>
   </div>
 </main>
-<footer><div class="wrap">ResumeIQ · Vels University BCA Data Science Final Project · Developed by Mohamed Arsath</div></footer>
+
+<footer><div class="wrap">ResumeIQ · Resume Analyzer · Built for College Project</div></footer>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.6.0/mammoth.browser.min.js"></script>
 <script>
-if(typeof pdfjsLib!=='undefined')pdfjsLib.GlobalWorkerOptions.workerSrc='https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
-function getHistory(){try{return JSON.parse(localStorage.getItem('resumeiq_history')||'[]')}catch{return[]}}
-function saveHistory(h){try{localStorage.setItem('resumeiq_history',JSON.stringify(h))}catch{}}
-function addToHistory(e){const h=getHistory();h.unshift({...e,id:Date.now(),date:new Date().toLocaleString()});if(h.length>20)h.pop();saveHistory(h);updateHistCount()}
+if(typeof pdfjsLib!=='undefined') pdfjsLib.GlobalWorkerOptions.workerSrc='https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+
+// ── HISTORY ──────────────────────────────────────────────
+function getHistory(){try{return JSON.parse(localStorage.getItem('riq_h')||'[]')}catch{return[]}}
+function saveHistory(h){try{localStorage.setItem('riq_h',JSON.stringify(h))}catch{}}
+function addToHistory(e){const h=getHistory();h.unshift({...e,id:Date.now(),date:new Date().toLocaleString('en-IN',{day:'2-digit',month:'short',hour:'2-digit',minute:'2-digit'})});if(h.length>30)h.pop();saveHistory(h);updateHistCount()}
 function updateHistCount(){document.getElementById('histCount').textContent=getHistory().length}
 function openHistory(){renderHistory();document.getElementById('histPanel').classList.add('open');document.getElementById('overlay').classList.add('open')}
 function closeHistory(){document.getElementById('histPanel').classList.remove('open');document.getElementById('overlay').classList.remove('open')}
-function clearHistory(){if(confirm('Clear all history?')){localStorage.removeItem('resumeiq_history');updateHistCount();renderHistory()}}
+function clearHistory(){if(confirm('Clear all history?')){localStorage.removeItem('riq_h');updateHistCount();renderHistory()}}
 function renderHistory(){
-  const h=getHistory(),listEl=document.getElementById('histList'),statsEl=document.getElementById('hpStats'),clearBtn=document.getElementById('hpClear');
-  if(!h.length){listEl.innerHTML='<div class="hp-empty"><div class="hp-empty-ico">📭</div>No analyses yet.<br>Upload a resume to get started!</div>';statsEl.innerHTML='';clearBtn.style.display='none';return}
-  clearBtn.style.display='block';
+  const h=getHistory();
+  const listEl=document.getElementById('histList');
+  const statsEl=document.getElementById('hpStats');
+  const footer=document.getElementById('hpFooter');
+  if(!h.length){
+    listEl.innerHTML='<div class="hp-empty"><div class="hp-empty-ico">📭</div>No analyses yet.<br>Upload a resume to get started!</div>';
+    statsEl.innerHTML='';footer.style.display='none';return;
+  }
+  footer.style.display='block';
   const avgAts=Math.round(h.reduce((a,x)=>a+x.ats,0)/h.length);
-  const avgOverall=Math.round(h.reduce((a,x)=>a+x.overall,0)/h.length);
+  const avgOv=Math.round(h.reduce((a,x)=>a+x.overall,0)/h.length);
   const wm=h.filter(x=>x.match>0);
-  const avgMatch=wm.length?Math.round(wm.reduce((a,x)=>a+x.match,0)/wm.length):'-';
-  statsEl.innerHTML=`<div class="hp-stat"><div class="hp-stat-num">${h.length}</div><div class="hp-stat-lbl">Analyses</div></div><div class="hp-stat"><div class="hp-stat-num">${avgAts}</div><div class="hp-stat-lbl">Avg ATS</div></div><div class="hp-stat"><div class="hp-stat-num">${avgMatch}${avgMatch!=='-'?'%':''}</div><div class="hp-stat-lbl">Avg Match</div></div>`;
-  listEl.innerHTML=h.map(i=>`<div class="history-item"><div class="hi-top"><div class="hi-name">${i.name}</div><div class="hi-date">${i.date}</div></div><div class="hi-scores"><span class="hi-score ats">ATS: ${i.ats}</span><span class="hi-score overall">Score: ${i.overall}</span>${i.match>0?`<span class="hi-score match">Match: ${i.match}%</span>`:''}</div>${i.jobTitle?`<div class="hi-job">💼 ${i.jobTitle}</div>`:''}</div>`).join('');
+  const avgM=wm.length?Math.round(wm.reduce((a,x)=>a+x.match,0)/wm.length):'-';
+  statsEl.innerHTML=`
+    <div class="hp-stat"><div class="hp-stat-num">${h.length}</div><div class="hp-stat-lbl">Total</div></div>
+    <div class="hp-stat"><div class="hp-stat-num">${avgAts}</div><div class="hp-stat-lbl">Avg ATS</div></div>
+    <div class="hp-stat"><div class="hp-stat-num">${avgM}${avgM!=='-'?'%':''}</div><div class="hp-stat-lbl">Avg Match</div></div>`;
+  listEl.innerHTML=h.map(i=>`
+    <div class="history-item">
+      <div class="hi-row1">
+        <div class="hi-name">${i.name}</div>
+        <div class="hi-date">${i.date}</div>
+      </div>
+      <div class="hi-scores">
+        <span class="hi-score ats">ATS: ${i.ats}</span>
+        <span class="hi-score overall">Score: ${i.overall}</span>
+        ${i.match>0?`<span class="hi-score match">Match: ${i.match}%</span>`:''}
+      </div>
+      ${i.jobTitle?`<div class="hi-job">💼 ${i.jobTitle}</div>`:''}
+    </div>`).join('');
 }
 updateHistCount();
-const dz=document.getElementById('dz'),fi=document.getElementById('fi'),abtn=document.getElementById('abtn'),finfo=document.getElementById('finfo'),fnameEl=document.getElementById('fname'),errbx=document.getElementById('errbx');
+
+// ── UPLOAD ───────────────────────────────────────────────
+const dz=document.getElementById('dz'),fi=document.getElementById('fi');
+const abtn=document.getElementById('abtn'),finfo=document.getElementById('finfo');
+const fnameEl=document.getElementById('fname'),errbx=document.getElementById('errbx');
 let selFile=null;
 dz.onclick=()=>fi.click();
 dz.ondragover=e=>{e.preventDefault();dz.classList.add('over')};
 dz.ondragleave=()=>dz.classList.remove('over');
 dz.ondrop=e=>{e.preventDefault();dz.classList.remove('over');if(e.dataTransfer.files[0])setFile(e.dataTransfer.files[0])};
 fi.onchange=e=>{if(e.target.files[0])setFile(e.target.files[0])};
-function setFile(f){const ext=f.name.split('.').pop().toLowerCase();if(!['pdf','docx','txt'].includes(ext)){showErr('Please upload PDF, DOCX, or TXT');return}selFile=f;fnameEl.textContent=f.name;finfo.classList.add('show');errbx.classList.remove('show')}
+function setFile(f){
+  const ext=f.name.split('.').pop().toLowerCase();
+  if(!['pdf','docx','txt'].includes(ext)){showErr('Please upload a PDF, DOCX, or TXT file.');return}
+  selFile=f;fnameEl.textContent=f.name;finfo.classList.add('show');errbx.classList.remove('show');
+}
 function showErr(m){errbx.textContent='⚠️ '+m;errbx.classList.add('show')}
-async function extractText(file){const ext=file.name.split('.').pop().toLowerCase();if(ext==='txt')return new Promise(r=>{const fr=new FileReader();fr.onload=e=>r(e.target.result);fr.readAsText(file)});if(ext==='pdf')return extractPDF(file);if(ext==='docx')return extractDOCX(file);return''}
-async function extractPDF(file){try{const ab=await file.arrayBuffer();const pdf=await pdfjsLib.getDocument({data:ab}).promise;let txt='';for(let i=1;i<=pdf.numPages;i++){const pg=await pdf.getPage(i);const tc=await pg.getTextContent();txt+=tc.items.map(x=>x.str).join(' ')+'\n'}return txt}catch{return''}}
-async function extractDOCX(file){try{const ab=await file.arrayBuffer();const str=new TextDecoder('utf-8',{fatal:false}).decode(new Uint8Array(ab));const m=str.match(/<w:t[^>]*>([^<]+)<\/w:t>/g)||[];let txt=m.map(x=>x.replace(/<[^>]+>/g,'')).join(' ');if(!txt.trim())txt=str.replace(/[^\x20-\x7E\n]/g,' ').replace(/\s+/g,' ');return txt}catch{return''}}
+
+// ── TEXT EXTRACTION (fixed) ───────────────────────────────
+async function extractText(file){
+  const ext=file.name.split('.').pop().toLowerCase();
+  if(ext==='txt') return readTxt(file);
+  if(ext==='pdf') return readPDF(file);
+  if(ext==='docx') return readDOCX(file);
+  return '';
+}
+
+function readTxt(file){
+  return new Promise((res,rej)=>{
+    const fr=new FileReader();
+    fr.onload=e=>res(e.target.result||'');
+    fr.onerror=()=>rej(new Error('Read failed'));
+    fr.readAsText(file,'UTF-8');
+  });
+}
+
+async function readPDF(file){
+  try{
+    const ab=await file.arrayBuffer();
+    const pdf=await pdfjsLib.getDocument({data:ab}).promise;
+    let txt='';
+    for(let i=1;i<=pdf.numPages;i++){
+      const pg=await pdf.getPage(i);
+      const tc=await pg.getTextContent();
+      // preserve spacing between items
+      let pageText='';
+      let lastY=null;
+      tc.items.forEach(item=>{
+        if(lastY!==null && Math.abs(item.transform[5]-lastY)>5) pageText+='\n';
+        pageText+=item.str+' ';
+        lastY=item.transform[5];
+      });
+      txt+=pageText+'\n';
+    }
+    return txt;
+  }catch(e){console.error(e);return '';}
+}
+
+async function readDOCX(file){
+  // Use mammoth.js for reliable DOCX text extraction
+  try{
+    if(typeof mammoth !== 'undefined'){
+      const ab=await file.arrayBuffer();
+      const result=await mammoth.extractRawText({arrayBuffer:ab});
+      return result.value||'';
+    }
+    // Fallback if mammoth not loaded
+    const ab=await file.arrayBuffer();
+    const str=new TextDecoder('utf-8',{fatal:false}).decode(new Uint8Array(ab));
+    const wtMatches=str.match(/<w:t(?:\s[^>]*)?>([^<]*)<\/w:t>/g)||[];
+    let text=wtMatches.map(m=>m.replace(/<[^>]+>/g,'')).join(' ');
+    text=text.replace(/[^\x09\x0A\x0D\x20-\x7E\u00A0-\uFFFF]/g,' ').replace(/\s{3,}/g,' ').trim();
+    return text;
+  }catch(e){console.error(e);return '';}
+}
+
+// ── JOB MATCH ────────────────────────────────────────────
 function matchJD(rt,jt){
-  if(!jt||jt.trim().length<20)return null;
-  const r=rt.toLowerCase(),j=jt.toLowerCase();
+  if(!jt||jt.trim().length<20) return null;
+  const r=rt.toLowerCase(), j=jt.toLowerCase();
   const stop=new Set(['with','that','this','have','from','they','will','your','what','been','were','when','their','there','which','about','would','could','should','into','more','also','some','other','than','then','only','over','such','after','before','being','having','where','while','those','these','each','both','much','many','most','very','just','even','back','well','good','need','work','make','take','give','know','think','come','want','look','like']);
   const jWords=[...new Set((j.match(/\b[a-z]{4,}\b/g)||[]).filter(w=>!stop.has(w)))];
-  const tech=['python','java','javascript','react','node','sql','aws','docker','kubernetes','git','linux','html','css','typescript','angular','vue','mongodb','postgresql','mysql','redis','api','rest','graphql','machine learning','tensorflow','pytorch','agile','scrum','devops','microservices','cloud','azure','gcp','flutter','kotlin','swift','leadership','communication','management','analysis','design','testing','deployment'];
+  const tech=['python','java','javascript','react','node','sql','aws','docker','kubernetes','git','linux','html','css','typescript','angular','vue','mongodb','postgresql','mysql','redis','api','rest','graphql','machine learning','tensorflow','pytorch','agile','scrum','devops','microservices','cloud','azure','gcp','flutter','kotlin','swift','leadership','communication','management','analysis','design','testing','deployment','pandas','numpy','tableau','power bi','excel','figma','opencv','scikit','deep learning','data science','computer vision'];
   const matched=[],missing=[];
   jWords.slice(0,30).forEach(k=>{if(r.includes(k))matched.push(k);else missing.push(k)});
   const jdTech=tech.filter(t=>j.includes(t));
@@ -331,98 +477,169 @@ function matchJD(rt,jt){
   const miTech=jdTech.filter(t=>!r.includes(t));
   const score=Math.min(98,Math.max(5,Math.round((matched.length/Math.max(jWords.slice(0,30).length,1))*70+(mTech.length/Math.max(jdTech.length,1))*30)));
   const tm=jt.match(/(?:position|role|title|looking for|hiring)[:\s]+([A-Z][A-Za-z\s]{3,40})/i);
-  return{score,matched:[...new Set([...matched,...mTech])].slice(0,12),missing:[...new Set([...missing,...miTech])].slice(0,10),jobTitle:tm?tm[1].trim().slice(0,50):'This Position',verdict:score>=80?'Excellent match! Your resume aligns very well.':score>=60?'Good match. A few tweaks will strengthen your application.':score>=40?'Partial match. Add missing keywords to improve your score.':'Low match. Significant gaps exist — tailor your resume to this role.'};
+  return{score,matched:[...new Set([...matched,...mTech])].slice(0,12),missing:[...new Set([...missing,...miTech])].slice(0,10),jobTitle:tm?tm[1].trim().slice(0,50):'This Position',verdict:score>=80?'Excellent match! Your resume aligns very well.':score>=60?'Good match. A few tweaks will strengthen your application.':score>=40?'Partial match. Add missing keywords to improve your score.':'Low match. Significant gaps — tailor your resume to this specific role.'};
 }
+
+// ── ANALYZE RESUME ────────────────────────────────────────
 function analyzeResume(text){
-  const t=text.toLowerCase(),lines=text.split('\n').map(l=>l.trim()).filter(Boolean),words=text.split(/\s+/).filter(Boolean);
-  const emailMatch=text.match(/[\w.+-]+@[\w-]+\.[a-z]{2,}/i);
-  const phoneMatch=text.match(/(\+?\d[\d\s\-().]{8,14}\d)/);
-  const linkedinMatch=text.match(/linkedin\.com\/in\/[\w-]+/i);
+  const t=text.toLowerCase();
+  const lines=text.split('\n').map(l=>l.trim()).filter(l=>l.length>0);
+  const words=text.split(/\s+/).filter(Boolean);
   const wc=words.length;
-  const secs={'Experience':['experience','work history','employment'],'Education':['education','degree','university','college'],'Skills':['skills','technical skills','expertise'],'Projects':['projects','portfolio'],'Summary':['summary','objective','profile','about me'],'Certifications':['certification','certificate','certified'],'Achievements':['achievement','award','honor'],'Languages':['languages'],'References':['reference'],'Volunteer':['volunteer']};
+
+  // ── Contact detection (improved regex) ──
+  // Email: broad match
+  const emailMatch=text.match(/[a-zA-Z0-9._%+\-]+\s*@\s*[a-zA-Z0-9.\-]+\s*\.\s*[a-zA-Z]{2,}/);
+  const emailClean=emailMatch?emailMatch[0].replace(/\s/g,''):null;
+
+  // Phone: Indian format aware (+91, 7/8/9 start)
+  const phoneMatch=text.match(/(?:\+91[\s\-]?)?[6-9]\d{9}|(?:\+\d{1,3}[\s\-]?)?\(?\d{3}\)?[\s\-]?\d{3}[\s\-]?\d{4}/);
+
+  // LinkedIn: various formats
+  const linkedinMatch=text.match(/linkedin\.com\/in\/[\w\-%.]+/i)||text.match(/linkedin\s*[:|]\s*[\w\-/.]+/i);
+
+  // Portfolio / GitHub
+  const portfolioMatch=text.match(/(?:portfolio|github)[\s:|]+([^\s,|]+)/i)||text.match(/https?:\/\/[^\s]+(?:github|portfolio)[^\s]*/i);
+
+  // Name: first non-empty line that looks like a name
+  let name='Unknown';
+  for(const line of lines){
+    if(line.length>2&&line.length<50&&/^[A-Za-z\s.']+$/.test(line)&&!line.toLowerCase().includes('resume')&&!line.toLowerCase().includes('curriculum')){
+      name=line.trim();break;
+    }
+  }
+
+  // ── Sections ──
+  const secs={'Experience':['experience','work history','employment','internship'],'Education':['education','academic','qualification','degree','university','college'],'Skills':['skills','technical skills','expertise','competencies'],'Projects':['projects','portfolio','works'],'Summary':['summary','objective','profile','about me','overview'],'Certifications':['certification','certificate','certified','license'],'Achievements':['achievement','award','honor','recognition'],'Languages':['languages','language proficiency'],'References':['reference'],'Volunteer':['volunteer']};
   const found=[],missing=[];
   for(const[s,kws]of Object.entries(secs)){if(kws.some(k=>t.includes(k)))found.push(s);else missing.push(s)}
-  const skills=['python','java','javascript','typescript','react','angular','vue','node','sql','mysql','postgresql','mongodb','aws','azure','gcp','docker','kubernetes','git','linux','html','css','c++','c#','php','ruby','swift','kotlin','flutter','django','flask','spring','tensorflow','machine learning','deep learning','data analysis','excel','powerpoint','photoshop','figma','tableau','power bi','leadership','communication','teamwork','problem solving','time management'].filter(s=>t.includes(s));
-  const verbs=['achieved','built','created','designed','developed','improved','increased','led','managed','optimized','reduced','resolved','launched','delivered','implemented','analyzed','collaborated','coordinated','established','generated','mentored','executed','automated'];
+
+  // ── Skills (comprehensive) ──
+  const allSkills=['python','java','javascript','typescript','react','angular','vue','node','sql','mysql','postgresql','mongodb','aws','azure','gcp','docker','kubernetes','git','linux','html','css','c++','c#','php','ruby','swift','kotlin','flutter','django','flask','spring','tensorflow','pytorch','machine learning','deep learning','data analysis','excel','powerpoint','photoshop','figma','tableau','power bi','r programming','matlab','pandas','numpy','scikit','opencv','matplotlib','jupyter','vs code','powerbi','computer vision','feature engineering','leadership','communication','teamwork','problem solving','critical thinking','time management','creativity','adaptability','collaboration','project management','stakeholder management','strategic communication'];
+  const skills=allSkills.filter(s=>t.includes(s));
+
+  // ── Action verbs ──
+  const verbs=['achieved','built','created','designed','developed','improved','increased','led','managed','optimized','reduced','resolved','launched','delivered','implemented','analyzed','collaborated','coordinated','established','generated','mentored','executed','automated','engineered','deployed','processed','visualized','trained','transformed'];
   const vc=verbs.filter(v=>t.includes(v)).length;
   const avs=Math.min(100,vc*10+20);
-  const nums=text.match(/\d+%|\$[\d,]+|\d+x|\d+\+|\d+ (years|months|projects|clients|users)/gi)||[];
+
+  // ── Quantification ──
+  const nums=text.match(/\d+%|\d+\+\s*(?:hours?|images?|records?|projects?|clients?|users?)|[\$₹]\s*[\d,]+|\d+k\b|\d+x\b|\d+\s*(?:hours?|images?|records?)/gi)||[];
   const qs=Math.min(100,nums.length*12+10);
+
+  // ── ATS issues ──
   const iss=[];
-  if(!emailMatch)iss.push({issue:'No email address found',fix:'Add a professional email to your contact section',severity:'high'});
-  if(!phoneMatch)iss.push({issue:'No phone number detected',fix:'Include your phone number in contacts',severity:'high'});
-  if(!found.includes('Summary'))iss.push({issue:'Missing professional summary',fix:'Add a 2-3 sentence summary at the top',severity:'high'});
-  if(!found.includes('Skills'))iss.push({issue:'No dedicated skills section',fix:'Add a Skills section with technical and soft skills',severity:'high'});
-  if(wc<200)iss.push({issue:`Resume too short (${wc} words)`,fix:'Expand to at least 400-600 words',severity:'high'});
-  if(nums.length<3)iss.push({issue:'Lacks quantified achievements',fix:'Add numbers, percentages, and metrics',severity:'medium'});
-  if(vc<4)iss.push({issue:'Few strong action verbs',fix:'Start bullets with Led, Built, Increased, Achieved',severity:'medium'});
-  if(!linkedinMatch)iss.push({issue:'No LinkedIn profile found',fix:'Add your LinkedIn URL to contacts',severity:'low'});
-  let ats=100;iss.forEach(i=>{if(i.severity==='high')ats-=15;else if(i.severity==='medium')ats-=8;else ats-=3});
+  if(!emailClean) iss.push({issue:'No email address found',fix:'Add your email address clearly in the contact section',severity:'high'});
+  if(!phoneMatch) iss.push({issue:'No phone number detected',fix:'Include your phone number in the contact section',severity:'high'});
+  if(!found.includes('Summary')) iss.push({issue:'Missing professional summary',fix:'Add a 2-3 sentence summary at the top of your resume',severity:'high'});
+  if(!found.includes('Skills')) iss.push({issue:'No dedicated skills section',fix:'Add a Skills section with technical and soft skills',severity:'high'});
+  if(wc<200) iss.push({issue:`Resume too short (${wc} words)`,fix:'Expand to at least 400-600 words with detailed descriptions',severity:'high'});
+  if(nums.length<3) iss.push({issue:'Lacks quantified achievements',fix:'Add numbers, percentages, and metrics to demonstrate impact',severity:'medium'});
+  if(vc<4) iss.push({issue:'Few strong action verbs',fix:'Start bullet points with: Led, Built, Engineered, Designed, Achieved',severity:'medium'});
+  if(!linkedinMatch) iss.push({issue:'No LinkedIn profile URL found',fix:'Add your LinkedIn URL to the contact section',severity:'low'});
+  if(!found.includes('Certifications')) iss.push({issue:'No certifications listed',fix:'Add any relevant certifications or online courses',severity:'low'});
+
+  let ats=100;
+  iss.forEach(i=>{if(i.severity==='high')ats-=15;else if(i.severity==='medium')ats-=8;else ats-=3});
   ats=Math.max(20,Math.min(100,ats));
+
   const cs=Math.min(100,Math.round((found.length/Object.keys(secs).length)*40+(Math.min(wc,600)/600)*30+(nums.length>5?30:nums.length*5)));
-  const fs=Math.min(100,Math.round((emailMatch?20:0)+(phoneMatch?20:0)+(found.length>4?20:found.length*4)+(wc>300&&wc<800?20:10)+(linkedinMatch?20:10)));
-  const ks=Math.min(100,Math.round(skills.length*6+10));
-  const is2=Math.min(100,Math.round(vc*8+nums.length*6+10));
-  const ov=Math.round(ats*0.3+cs*0.2+fs*0.15+ks*0.15+is2*0.1+avs*0.05+qs*0.05);
+  const fs=Math.min(100,Math.round((emailClean?20:0)+(phoneMatch?20:0)+(found.length>4?20:found.length*4)+(wc>300&&wc<800?20:10)+(linkedinMatch?20:10)));
+  const ks=Math.min(100,Math.round(skills.length*5+10));
+  const imp=Math.min(100,Math.round(vc*8+nums.length*6+10));
+  const ov=Math.round(ats*0.3+cs*0.2+fs*0.15+ks*0.15+imp*0.1+avs*0.05+qs*0.05);
+
   const str=[];
-  if(emailMatch&&phoneMatch)str.push({title:'Complete Contact Info',description:'Both email and phone present — easy for recruiters to reach you.'});
-  if(found.includes('Experience'))str.push({title:'Work Experience Included',description:'Experience section is the most important part of any resume.'});
-  if(found.includes('Education'))str.push({title:'Education Present',description:'Educational background clearly documented.'});
-  if(skills.length>5)str.push({title:'Strong Skills Portfolio',description:`${skills.length} skills detected including ${skills.slice(0,3).join(', ')}.`});
-  if(vc>=5)str.push({title:'Good Action Verbs',description:'Strong action verbs make your accomplishments more impactful.'});
-  if(nums.length>=3)str.push({title:'Quantified Achievements',description:'Numbers and metrics prove the impact of your work.'});
-  if(str.length===0)str.push({title:'Resume Submitted',description:'First step done! Use the suggestions below to improve.'});
+  if(emailClean&&phoneMatch) str.push({title:'Complete Contact Info',description:'Both email and phone are present — easy for recruiters to reach you.'});
+  if(found.includes('Experience')||found.includes('Experience')) str.push({title:'Work/Internship Experience',description:'Experience section is the most critical part of any resume.'});
+  if(found.includes('Education')) str.push({title:'Education Documented',description:'Your academic background is clearly listed.'});
+  if(skills.length>5) str.push({title:`Strong Skills (${skills.length} detected)`,description:`Skills like ${skills.slice(0,3).join(', ')} are great for ATS keyword matching.`});
+  if(vc>=5) str.push({title:'Good Action Verbs',description:'Strong action verbs make your accomplishments sound more impactful.'});
+  if(nums.length>=3) str.push({title:'Quantified Achievements',description:'Numbers and metrics prove the impact of your work to employers.'});
+  if(found.includes('Projects')) str.push({title:'Projects Section Present',description:'Projects demonstrate practical skills and initiative.'});
+  if(str.length===0) str.push({title:'Resume Submitted',description:'Good first step! Use the suggestions below to strengthen it.'});
+
   const wk=[];
-  if(!found.includes('Summary'))wk.push({title:'Missing Professional Summary',description:'A summary helps recruiters quickly understand your value.'});
-  if(nums.length<3)wk.push({title:'Lacks Quantified Results',description:'Without numbers, employers cannot gauge your impact.'});
-  if(vc<4)wk.push({title:'Weak Action Verbs',description:'Passive language makes experience sound less impressive.'});
-  if(skills.length<5)wk.push({title:'Limited Skills Listed',description:'More skills = more keyword matches with job postings.'});
-  if(!linkedinMatch)wk.push({title:'No LinkedIn Profile',description:'87% of recruiters check LinkedIn. Always include it.'});
-  const sugg=[
-    {category:'ATS Optimization',suggestion:'Use simple fonts, avoid tables/columns, save as PDF. ATS systems struggle with complex formatting.',priority:'high'},
-    {category:'Quantify Impact',suggestion:'Replace "improved performance" with "improved performance by 35% saving $50K annually".',priority:'high'},
-    {category:'Keywords',suggestion:'Mirror the exact keywords from the job description — ATS scores resumes by keyword match percentage.',priority:'high'},
-    {category:'Tailor Resume',suggestion:'Never send the same resume twice. Customize for every single job application.',priority:'high'},
-    {category:'Action Verbs',suggestion:'Start every bullet with: Led, Developed, Implemented, Optimized, Delivered, Achieved, Built.',priority:'medium'},
-    {category:'Professional Summary',suggestion:'Write a 2-3 sentence summary that directly addresses the role. Mention experience, top skills, key achievement.',priority:'medium'},
-    {category:'Contact Info',suggestion:'Include: Full Name, Phone, Email, LinkedIn URL, GitHub (if tech), City/State.',priority:'medium'},
-    {category:'Skills Section',suggestion:'Separate Technical Skills and Soft Skills. Put most relevant ones first.',priority:'medium'},
-    {category:'Proofreading',suggestion:'Use Grammarly — one typo can get your resume immediately rejected.',priority:'low'},
-    {category:'Education',suggestion:'Add GPA (if 3.5+), relevant coursework, academic projects, honors and awards.',priority:'low'},
+  if(!found.includes('Summary')) wk.push({title:'Missing Professional Summary',description:'A 2-3 sentence summary at the top helps recruiters instantly understand your value.'});
+  if(nums.length<3) wk.push({title:'Needs More Quantified Results',description:'Add specific numbers: "92% accuracy", "50+ hours", "400k+ records".'});
+  if(vc<4) wk.push({title:'Weak Action Verbs',description:'Start bullets with strong verbs: Engineered, Deployed, Designed, Achieved.'});
+  if(skills.length<5) wk.push({title:'Limited Skills Listed',description:'More skills = more keyword matches with job postings.'});
+  if(!linkedinMatch) wk.push({title:'No LinkedIn URL',description:'87% of recruiters check LinkedIn. Include your profile link.'});
+  if(wc<300) wk.push({title:'Resume Too Short',description:'Expand your bullet points with more detail about what you did and its impact.'});
+
+  const suggs=[
+    {category:'ATS Optimization',suggestion:'Use simple fonts, avoid tables and columns in layout, save as PDF. ATS systems often fail to read complex formatting.',priority:'high'},
+    {category:'Quantify Impact',suggestion:'Every bullet point should have a number. "Processed 50+ hours of audio data" is much better than "Processed audio data".',priority:'high'},
+    {category:'Keywords',suggestion:'Read the job description carefully and mirror its exact keywords. ATS scores your resume by keyword match percentage.',priority:'high'},
+    {category:'Tailor for Each Job',suggestion:'Never send the same resume to every job. Customize the summary, skills, and bullet points for each specific application.',priority:'high'},
+    {category:'Professional Summary',suggestion:'Add a 2-3 sentence profile at the top. Example: "Data Science student at Vels University with expertise in ML, Python, and Computer Vision. Built production-ready models achieving 92%+ accuracy."',priority:'medium'},
+    {category:'LinkedIn & Portfolio',suggestion:'Include your LinkedIn URL and portfolio/GitHub link. Recruiters will check these before calling you.',priority:'medium'},
+    {category:'Action Verbs',suggestion:'Start every bullet with a power verb: Engineered, Designed, Built, Achieved, Analyzed, Deployed, Optimized, Automated.',priority:'medium'},
+    {category:'Skills Section',suggestion:'Group skills clearly: Languages | Libraries | Tools | Concepts | Soft Skills. Make it easy to scan.',priority:'medium'},
+    {category:'Proofreading',suggestion:'Use Grammarly to catch grammar and spelling mistakes. One typo can get your resume rejected immediately.',priority:'low'},
+    {category:'Certifications',suggestion:'List certifications with the issuing organization: "Machine Learning with Python — IBM". Link certificates if possible.',priority:'low'},
   ];
+
   const fit=[];
-  if(t.includes('software')||t.includes('developer'))fit.push('Software Developer','Full Stack Developer');
-  if(t.includes('data')||t.includes('analytics'))fit.push('Data Analyst','Data Scientist');
-  if(t.includes('marketing'))fit.push('Marketing Specialist','Digital Marketer');
-  if(t.includes('design')||t.includes('figma'))fit.push('UI/UX Designer','Product Designer');
-  if(t.includes('manage')||t.includes('leader'))fit.push('Project Manager','Team Lead');
-  if(fit.length===0)fit.push('Business Analyst','Operations Associate','Entry Level Analyst');
-  return{name:lines[0]||'Unknown',email:emailMatch?emailMatch[0]:null,phone:phoneMatch?phoneMatch[0]:null,linkedin:linkedinMatch?linkedinMatch[0]:null,wordCount:wc,scores:{ats,overall:ov,content:cs,format:fs,keywords:ks,impact:is2},actionVerbScore:avs,quantScore:qs,found,missing,skills,strengths:str,weaknesses:wk,atsIssues:iss,suggestions:sugg,jobFit:fit,
-    verdict:ov>=80?`Excellent resume with ${found.length} key sections and ${skills.length} skills detected.`:ov>=60?`Good resume. Adding quantified achievements and keywords will boost your ATS score.`:ov>=40?`Needs improvement. Focus on summary, quantifying achievements, and more skills.`:`Significant work needed. Complete missing sections and use strong action verbs throughout.`};
+  if(t.includes('data science')||t.includes('machine learning')||t.includes('python')) fit.push('Data Scientist','ML Engineer','Data Analyst');
+  if(t.includes('computer vision')||t.includes('opencv')||t.includes('deep learning')) fit.push('Computer Vision Engineer','AI Engineer');
+  if(t.includes('software')||t.includes('developer')||t.includes('react')) fit.push('Software Developer','Full Stack Developer');
+  if(t.includes('tableau')||t.includes('power bi')||t.includes('dashboard')) fit.push('Business Intelligence Analyst','Data Analyst');
+  if(fit.length===0) fit.push('Data Analyst','Business Analyst','Junior Developer','Operations Analyst');
+
+  return{name,email:emailClean,phone:phoneMatch?phoneMatch[0]:null,linkedin:linkedinMatch?linkedinMatch[0]:null,portfolio:portfolioMatch?portfolioMatch[0]:null,wordCount:wc,scores:{ats,overall:ov,content:cs,format:fs,keywords:ks,impact:imp},actionVerbScore:avs,quantScore:qs,found,missing,skills,strengths:str,weaknesses:wk,atsIssues:iss,suggestions:suggs,jobFit:fit,
+    verdict:ov>=80?`Strong resume with ${found.length} sections and ${skills.length} skills detected. Focus on tailoring it per job application.`:ov>=60?`Good resume. Add a professional summary and more quantified achievements to push your score higher.`:ov>=40?`Solid foundation but needs work. Prioritize: professional summary, quantified bullets, and more skills.`:`Needs significant improvement. Follow the high-priority recommendations below to make this resume competitive.`
+  };
 }
+
+// ── MAIN ─────────────────────────────────────────────────
 async function analyze(){
   if(!selFile){showErr('Please upload your resume first.');return}
-  errbx.classList.remove('show');document.getElementById('res').classList.remove('show');
-  document.getElementById('loader').classList.add('show');abtn.disabled=true;
-  const steps=['📄 Reading document...','🔍 Checking ATS...','💼 Matching job description...','📊 Calculating scores...','✨ Building report...'];
-  let si=0;const lstep=document.getElementById('lstep');lstep.textContent=steps[0];
-  const timer=setInterval(()=>{si=(si+1)%steps.length;lstep.textContent=steps[si]},1100);
+  errbx.classList.remove('show');
+  document.getElementById('res').classList.remove('show');
+  document.getElementById('loader').classList.add('show');
+  abtn.disabled=true;
+
+  const steps=['📄 Reading document...','🔍 Checking ATS compatibility...','💼 Matching job description...','📊 Calculating scores...','✨ Building your report...'];
+  let si=0;const lstepEl=document.getElementById('lstep');
+  lstepEl.textContent=steps[0];
+  const timer=setInterval(()=>{si=(si+1)%steps.length;lstepEl.textContent=steps[si]},1100);
+
   try{
     const text=await extractText(selFile);
-    await new Promise(r=>setTimeout(r,1000));
-    clearInterval(timer);document.getElementById('loader').classList.remove('show');
-    if(!text||text.trim().length<30){showErr('Could not extract text. Try a TXT file.');abtn.disabled=false;return}
+    await new Promise(r=>setTimeout(r,800));
+    clearInterval(timer);
+    document.getElementById('loader').classList.remove('show');
+
+    if(!text||text.trim().length<30){
+      showErr('Could not extract readable text. Please try saving as a TXT file and uploading that instead.');
+      abtn.disabled=false;return;
+    }
+
     const jd=document.getElementById('jdText').value.trim();
     const data=analyzeResume(text);
     const match=matchJD(text,jd);
+
     addToHistory({name:data.name,ats:data.scores.ats,overall:data.scores.overall,match:match?match.score:0,jobTitle:match?match.jobTitle:''});
-    render(data,match);abtn.disabled=false;
-  }catch(e){clearInterval(timer);document.getElementById('loader').classList.remove('show');showErr('Something went wrong. Try a TXT file.');abtn.disabled=false}
+    render(data,match);
+    abtn.disabled=false;
+  }catch(e){
+    clearInterval(timer);
+    document.getElementById('loader').classList.remove('show');
+    showErr('Something went wrong. Please try uploading a TXT version of your resume.');
+    abtn.disabled=false;
+    console.error(e);
+  }
 }
+
+// ── HELPERS ──────────────────────────────────────────────
 function sc(s){return s>=80?'#34d399':s>=60?'#52c4ff':s>=40?'#fbbf24':'#f87171'}
 function sl(s){return s>=80?'Excellent':s>=60?'Good':s>=40?'Fair':'Needs Work'}
 function animNum(el,t,dur=1400){let s=0;const step=ts=>{if(!s)s=ts;const p=Math.min((ts-s)/dur,1),e=1-Math.pow(1-p,3);el.textContent=Math.round(e*t);if(p<1)requestAnimationFrame(step)};requestAnimationFrame(step)}
+
+// ── RENDER ───────────────────────────────────────────────
 function render(d,match){
+  // Job match banner
   if(match){
     document.getElementById('jmatchBanner').style.display='block';
     const c=226.19,off=c-(match.score/100)*c;
@@ -433,37 +650,131 @@ function render(d,match){
           <circle fill="none" stroke="url(#mg)" stroke-width="10" stroke-linecap="round" cx="50" cy="50" r="36" stroke-dasharray="${c}" stroke-dashoffset="${c}" id="mRing"/>
           <defs><linearGradient id="mg" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" style="stop-color:#34d399"/><stop offset="100%" style="stop-color:#52c4ff"/></linearGradient></defs>
         </svg>
-        <div class="val"><span id="mNum" style="font-family:'Syne',sans-serif;font-weight:800;font-size:1.6rem;color:${sc(match.score)}">0</span><span style="font-size:.6rem;color:var(--muted);text-transform:uppercase;letter-spacing:1px">Match</span></div>
+        <div class="val">
+          <span id="mNum" style="font-family:'Syne',sans-serif;font-weight:800;font-size:1.6rem;color:${sc(match.score)}">0</span>
+          <span style="font-size:.6rem;color:var(--muted);text-transform:uppercase;letter-spacing:1px">Match</span>
+        </div>
       </div>
       <div class="jmatch-info">
         <div class="jmatch-title">💼 ${match.jobTitle}</div>
         <div class="jmatch-sub">${match.verdict}</div>
-        <div class="jmatch-kw">${match.matched.slice(0,6).map(k=>`<span class="kw-match">✓ ${k}</span>`).join('')}${match.missing.slice(0,5).map(k=>`<span class="kw-miss">✗ ${k}</span>`).join('')}</div>
+        <div class="jmatch-kw">
+          ${match.matched.slice(0,6).map(k=>`<span class="kw-match">✓ ${k}</span>`).join('')}
+          ${match.missing.slice(0,5).map(k=>`<span class="kw-miss">✗ ${k}</span>`).join('')}
+        </div>
       </div>`;
-    setTimeout(()=>{const r=document.getElementById('mRing');if(r){r.style.transition='stroke-dashoffset 1.6s cubic-bezier(.4,0,.2,1)';r.style.strokeDashoffset=off}const n=document.getElementById('mNum');if(n)animNum(n,match.score)},200);
-  }else{document.getElementById('jmatchBanner').style.display='none'}
-  const ini=d.name.split(' ').map(w=>w[0]).join('').slice(0,2).toUpperCase()||'?';
-  document.getElementById('ccard').innerHTML=`<div class="cavatar">${ini}</div><div class="cinfo"><div class="cname">${d.name}</div><div class="cmeta">${d.email?`<span>✉️ ${d.email}</span>`:''}${d.phone?`<span>📞 ${d.phone}</span>`:''}${d.linkedin?`<span>🔗 ${d.linkedin}</span>`:''}  <span>📝 ${d.wordCount} words</span></div></div><div class="vpill">${sl(d.scores.overall)}</div>`;
-  setTimeout(()=>{const c=301.59,off=c-(d.scores.ats/100)*c;document.getElementById('atsring').style.strokeDashoffset=off;animNum(document.getElementById('atsnum'),d.scores.ats);const l=document.getElementById('atslbl');l.textContent=sl(d.scores.ats);l.style.color=sc(d.scores.ats)},200);
-  const subs=[{k:'content',l:'Content',i:'📝'},{k:'format',l:'Format',i:'🎨'},{k:'keywords',l:'Keywords',i:'🔑'},{k:'impact',l:'Impact',i:'⚡'},{k:'actionVerbScore',l:'Action Verbs',i:'💬',d:true},{k:'quantScore',l:'Quantification',i:'📊',d:true}];
-  document.getElementById('subscores').innerHTML=subs.map(s=>{const v=s.d?d[s.k]:d.scores[s.k];return`<div class="sscard"><div class="sstop"><span class="ssname">${s.i} ${s.l}</span><span class="ssnum" style="color:${sc(v)}">${v}</span></div><div class="bar"><div class="bf" data-w="${v}" style="background:${sc(v)}"></div></div></div>`}).join('');
+    setTimeout(()=>{
+      const r2=document.getElementById('mRing');
+      if(r2){r2.style.transition='stroke-dashoffset 1.6s cubic-bezier(.4,0,.2,1)';r2.style.strokeDashoffset=off}
+      const n=document.getElementById('mNum');if(n)animNum(n,match.score);
+    },200);
+  }else{
+    document.getElementById('jmatchBanner').style.display='none';
+  }
+
+  // Candidate card — clean, only key info
+  const ini=d.name.split(' ').filter(Boolean).map(w=>w[0]).join('').slice(0,2).toUpperCase()||'?';
+  const metaItems=[
+    d.email?`<div class="cmeta-item has-val">✉️ ${d.email}</div>`:`<div class="cmeta-item">✉️ No email found</div>`,
+    d.phone?`<div class="cmeta-item has-val">📞 ${d.phone}</div>`:`<div class="cmeta-item">📞 No phone found</div>`,
+    d.linkedin?`<div class="cmeta-item has-val">🔗 LinkedIn</div>`:`<div class="cmeta-item">🔗 No LinkedIn</div>`,
+    `<div class="cmeta-item has-val">📝 ${d.wordCount} words</div>`
+  ];
+  document.getElementById('ccard').innerHTML=`
+    <div class="cavatar">${ini}</div>
+    <div class="cinfo">
+      <div class="cname">${d.name}</div>
+      <div class="cmeta">${metaItems.join('')}</div>
+    </div>
+    <div class="vpill">${sl(d.scores.overall)}</div>`;
+
+  // ATS ring
+  setTimeout(()=>{
+    const c=301.59,off=c-(d.scores.ats/100)*c;
+    document.getElementById('atsring').style.strokeDashoffset=off;
+    animNum(document.getElementById('atsnum'),d.scores.ats);
+    const l=document.getElementById('atslbl');l.textContent=sl(d.scores.ats);l.style.color=sc(d.scores.ats);
+  },200);
+
+  // Sub scores
+  const subs=[
+    {k:'content',l:'Content',i:'📝'},{k:'format',l:'Format',i:'🎨'},
+    {k:'keywords',l:'Keywords',i:'🔑'},{k:'impact',l:'Impact',i:'⚡'},
+    {k:'actionVerbScore',l:'Action Verbs',i:'💬',direct:true},{k:'quantScore',l:'Quantification',i:'📊',direct:true}
+  ];
+  document.getElementById('subscores').innerHTML=subs.map(s=>{
+    const v=s.direct?d[s.k]:d.scores[s.k];
+    return `<div class="sscard"><div class="sstop"><span class="ssname">${s.i} ${s.l}</span><span class="ssnum" style="color:${sc(v)}">${v}</span></div><div class="bar"><div class="bf" data-w="${v}" style="background:${sc(v)}"></div></div></div>`;
+  }).join('');
   setTimeout(()=>document.querySelectorAll('.bf').forEach(e=>e.style.width=e.dataset.w+'%'),300);
-  document.getElementById('atscard').innerHTML=d.atsIssues.length?`<div style="color:var(--muted);font-size:.8rem;margin-bottom:10px">${d.atsIssues.length} issue${d.atsIssues.length>1?'s':''} found</div><div class="issues">${d.atsIssues.map(i=>`<div class="issue ${i.severity}"><span class="isev">${i.severity}</span><div><div class="ititle">${i.issue}</div><div class="ifix">💡 ${i.fix}</div></div></div>`).join('')}</div>`:`<div style="text-align:center;padding:16px;color:var(--accent3)">✅ No major ATS issues found!</div>`;
-  document.getElementById('swgrid').innerHTML=`<div class="swcard str"><div class="swh"><div class="swico">💪</div><div class="swtitle">Strengths</div></div><div class="switems">${d.strengths.map(s=>`<div class="switem"><div class="swititle" style="color:var(--accent3)">✓ ${s.title}</div><div class="swidesc">${s.description}</div></div>`).join('')}</div></div><div class="swcard wk"><div class="swh"><div class="swico">⚠️</div><div class="swtitle">To Improve</div></div><div class="switems">${d.weaknesses.map(w=>`<div class="switem"><div class="swititle" style="color:var(--danger)">✗ ${w.title}</div><div class="swidesc">${w.description}</div></div>`).join('')}</div></div>`;
-  document.getElementById('secgrid').innerHTML=`<div class="scard"><div style="font-family:'Syne',sans-serif;font-weight:700">✅ Found</div><div class="slist">${d.found.map(s=>`<span class="chip cs">✓ ${s}</span>`).join('')}</div></div><div class="scard"><div style="font-family:'Syne',sans-serif;font-weight:700">❌ Missing</div><div class="slist">${d.missing.length?d.missing.map(s=>`<span class="chip ck">✗ ${s}</span>`).join(''):'<span style="color:var(--accent3);font-size:.82rem">All key sections present!</span>'}</div></div>`;
-  const matchChips=match?`<div class="ctitle" style="margin-top:14px">✅ Keywords You Have</div><div class="chips">${match.matched.map(k=>`<span class="chip cmatch">${k}</span>`).join('')}</div><div class="ctitle" style="margin-top:14px">❌ Missing from Job</div><div class="chips">${match.missing.map(k=>`<span class="chip ck">${k}</span>`).join('')}</div>`:`<div class="ctitle">🔑 Keywords to Add</div><div class="chips">${['ATS optimization','quantified achievements','stakeholder management','agile methodology','cross-functional','strategic planning','data-driven','process improvement'].filter(k=>!d.name.toLowerCase().includes(k)).slice(0,8).map(k=>`<span class="chip ck">${k}</span>`).join('')}</div>`;
-  document.getElementById('cgrid').innerHTML=`<div class="cchip"><div class="ctitle">🛠 Detected Skills (${d.skills.length})</div><div class="chips">${d.skills.length?d.skills.map(s=>`<span class="chip cs">${s}</span>`).join(''):'<span style="color:var(--muted);font-size:.8rem">No skills detected — add a skills section!</span>'}</div><div class="ctitle" style="margin-top:14px">🎯 Best Fit Roles</div><div class="chips">${d.jobFit.map(j=>`<span class="chip cj">${j}</span>`).join('')}</div></div><div class="cchip">${matchChips}</div>`;
+
+  // ATS issues
+  document.getElementById('atscard').innerHTML=d.atsIssues.length
+    ?`<div style="color:var(--muted);font-size:.8rem;margin-bottom:10px">${d.atsIssues.length} issue${d.atsIssues.length>1?'s':''} found</div><div class="issues">${d.atsIssues.map(i=>`<div class="issue ${i.severity}"><span class="isev">${i.severity}</span><div><div class="ititle">${i.issue}</div><div class="ifix">💡 ${i.fix}</div></div></div>`).join('')}</div>`
+    :`<div style="text-align:center;padding:16px;color:var(--accent3)">✅ No major ATS issues found!</div>`;
+
+  // SW
+  document.getElementById('swgrid').innerHTML=`
+    <div class="swcard str"><div class="swh"><div class="swico">💪</div><div class="swtitle">Strengths</div></div><div class="switems">${d.strengths.map(s=>`<div class="switem"><div class="swititle" style="color:var(--accent3)">✓ ${s.title}</div><div class="swidesc">${s.description}</div></div>`).join('')}</div></div>
+    <div class="swcard wk"><div class="swh"><div class="swico">⚠️</div><div class="swtitle">To Improve</div></div><div class="switems">${d.weaknesses.map(w=>`<div class="switem"><div class="swititle" style="color:var(--danger)">✗ ${w.title}</div><div class="swidesc">${w.description}</div></div>`).join('')}</div></div>`;
+
+  // Sections
+  document.getElementById('secgrid').innerHTML=`
+    <div class="scard"><div style="font-family:'Syne',sans-serif;font-weight:700">✅ Sections Found</div><div class="slist">${d.found.map(s=>`<span class="chip cs">✓ ${s}</span>`).join('')}</div></div>
+    <div class="scard"><div style="font-family:'Syne',sans-serif;font-weight:700">❌ Missing Sections</div><div class="slist">${d.missing.length?d.missing.map(s=>`<span class="chip ck">✗ ${s}</span>`).join(''):'<span style="color:var(--accent3);font-size:.82rem">All key sections present!</span>'}</div></div>`;
+
+  // Skills & keywords
+  const matchChips=match?`
+    <div class="ctitle" style="margin-top:14px">✅ Keywords You Have</div>
+    <div class="chips">${match.matched.map(k=>`<span class="chip cmatch">${k}</span>`).join('')}</div>
+    <div class="ctitle" style="margin-top:14px">❌ Missing from Job</div>
+    <div class="chips">${match.missing.map(k=>`<span class="chip ck">${k}</span>`).join('')}</div>`
+    :`<div class="ctitle">🔑 Keywords to Add</div><div class="chips">${['quantified achievements','professional summary','stakeholder management','agile methodology','cross-functional','strategic planning','data-driven','process improvement','kpi tracking','collaboration'].filter(k=>!d.skills.includes(k)).slice(0,8).map(k=>`<span class="chip ck">${k}</span>`).join('')}</div>`;
+
+  document.getElementById('cgrid').innerHTML=`
+    <div class="cchip">
+      <div class="ctitle">🛠 Detected Skills (${d.skills.length})</div>
+      <div class="chips">${d.skills.length?d.skills.map(s=>`<span class="chip cs">${s}</span>`).join(''):'<span style="color:var(--muted);font-size:.8rem">No skills detected — add a Skills section!</span>'}</div>
+      <div class="ctitle" style="margin-top:14px">🎯 Best Fit Roles</div>
+      <div class="chips">${d.jobFit.map(j=>`<span class="chip cj">${j}</span>`).join('')}</div>
+    </div>
+    <div class="cchip">${matchChips}</div>`;
+
+  // Suggestions
   let suggs=[...d.suggestions];
-  if(match&&match.missing.length>0)suggs.unshift({category:'Job Match',suggestion:`Add these missing keywords from the job posting: ${match.missing.slice(0,5).join(', ')}. Naturally incorporate them into your skills section and bullet points.`,priority:'high'});
-  if(match&&match.score<60)suggs.unshift({category:'Job Match',suggestion:`Your match is ${match.score}%. Rewrite your professional summary to directly mirror the job description language and requirements.`,priority:'high'});
+  if(match&&match.missing.length>0) suggs.unshift({category:'Job Match',suggestion:`Add these missing keywords from the job posting: ${match.missing.slice(0,5).join(', ')}. Incorporate them naturally into your skills and bullet points.`,priority:'high'});
+  if(match&&match.score<60) suggs.unshift({category:'Job Match',suggestion:`Your match is only ${match.score}%. Rewrite your professional summary to directly mirror the job description's language and key requirements.`,priority:'high'});
   const pri=['high','medium','low'];
-  document.getElementById('suglist').innerHTML=[...suggs].sort((a,b)=>pri.indexOf(a.priority)-pri.indexOf(b.priority)).map(s=>`<div class="sugitem"><div class="sugdot ${s.priority==='high'?'hp':s.priority==='medium'?'mp':'lp'}"></div><div class="sugbody"><div class="sugcat">${s.category} · ${s.priority} priority</div><div class="sugtxt">${s.suggestion}</div></div></div>`).join('');
+  document.getElementById('suglist').innerHTML=[...suggs].sort((a,b)=>pri.indexOf(a.priority)-pri.indexOf(b.priority)).map(s=>`
+    <div class="sugitem">
+      <div class="sugdot ${s.priority==='high'?'hp':s.priority==='medium'?'mp':'lp'}"></div>
+      <div class="sugbody"><div class="sugcat">${s.category} · ${s.priority} priority</div><div class="sugtxt">${s.suggestion}</div></div>
+    </div>`).join('');
+
+  // Verdict
   const ov=d.scores.overall,em=ov>=80?'🏆':ov>=60?'👍':ov>=40?'📈':'💪';
-  document.getElementById('vcard').innerHTML=`<div class="vico">${em}</div><div class="vtxt">${d.verdict}${match?' '+match.verdict:''}</div><div class="vbottom"><div class="vnum"><div class="vnumval" style="color:${sc(ov)}">${ov}</div><div class="vnumlbl">Overall</div></div><div class="vnum"><div class="vnumval" style="color:${sc(d.scores.ats)}">${d.scores.ats}</div><div class="vnumlbl">ATS Score</div></div>${match?`<div class="vnum"><div class="vnumval" style="color:${sc(match.score)}">${match.score}%</div><div class="vnumlbl">Job Match</div></div>`:''}<button class="rbtn" onclick="reset()">↩ Analyze Another</button></div>`;
+  document.getElementById('vcard').innerHTML=`
+    <div class="vico">${em}</div>
+    <div class="vtxt">${d.verdict}${match?' '+match.verdict:''}</div>
+    <div class="vbottom">
+      <div class="vnum"><div class="vnumval" style="color:${sc(ov)}">${ov}</div><div class="vnumlbl">Overall</div></div>
+      <div class="vnum"><div class="vnumval" style="color:${sc(d.scores.ats)}">${d.scores.ats}</div><div class="vnumlbl">ATS Score</div></div>
+      ${match?`<div class="vnum"><div class="vnumval" style="color:${sc(match.score)}">${match.score}%</div><div class="vnumlbl">Job Match</div></div>`:''}
+      <button class="rbtn" onclick="reset()">↩ Analyze Another</button>
+    </div>`;
+
   document.getElementById('res').classList.add('show');
   document.getElementById('res').scrollIntoView({behavior:'smooth',block:'start'});
 }
-function reset(){document.getElementById('res').classList.remove('show');document.getElementById('jmatchBanner').style.display='none';selFile=null;fi.value='';finfo.classList.remove('show');document.getElementById('jdText').value='';window.scrollTo({top:0,behavior:'smooth'})}
+
+function reset(){
+  document.getElementById('res').classList.remove('show');
+  document.getElementById('jmatchBanner').style.display='none';
+  selFile=null;fi.value='';
+  finfo.classList.remove('show');
+  document.getElementById('jdText').value='';
+  window.scrollTo({top:0,behavior:'smooth'});
+}
 </script>
 </body>
 </html>
